@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ch5 Purchasing Homes - GE1202 Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <!-- Sidebar Navigation -->
+    <nav class="fixed left-0 top-0 h-full w-64 bg-white shadow-lg z-50 overflow-y-auto">
+        <div class="p-6">
+            <a href="index.html" class="flex items-center gap-2 text-blue-600 font-bold mb-8 hover:text-blue-800">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                Back to Overview
+            </a>
+            <h2 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4">Navigation</h2>
+            <ul class="space-y-2">
+                <li><a href="ch2.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Ch2 Money Management</a></li>
+                <li><a href="ch3.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Ch3 Saving</a></li>
+                <li><a href="ch4.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Ch4 Consumer Credits</a></li>
+                <li><a href="ch5.html" class="block px-4 py-2 bg-orange-100 text-orange-700 rounded-lg font-medium">Ch5 Purchasing Homes</a></li>
+                <li><a href="ch6.html" class="block px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg font-medium border-l-4 border-red-500">Ch6 Insurance</a></li>
+                <li><a href="ch7.html" class="block px-4 py-2 text-indigo-600 hover:bg-indigo-50 rounded-lg font-medium border-l-4 border-indigo-500">Ch7 Investment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="ml-64 p-8">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-2xl p-8 mb-8">
+            <div class="flex items-center gap-3 mb-2">
+                <i data-lucide="home" class="w-8 h-8"></i>
+                <span class="text-orange-100 font-medium">Chapter 5</span>
+            </div>
+            <h1 class="text-3xl font-bold">Purchasing Homes</h1>
+            <p class="text-orange-100 mt-2">HKMA Guidelines, 60% LTV, Mortgage Types</p>
+        </div>
+
+        <!-- Key Concepts -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <i data-lucide="key" class="w-5 h-5 text-orange-500"></i>
+                    Key Concepts
+                </h2>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-sm font-medium shrink-0">Mortgage Ratio</span>
+                        <span>HKMA: Max <strong>60% LTV</strong> for properties below HK$7M (40% down payment)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-sm font-medium shrink-0">Agent Commission</span>
+                        <span><strong>1%</strong> of property price</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-sm font-medium shrink-0">P-rate Formula</span>
+                        <span>Mortgage rate = P(Prime rate) - spread (e.g., 5.25% - 3.1% = 2.15%)</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <i data-lucide="list-checks" class="w-5 h-5 text-orange-500"></i>
+                    Key Points
+                </h2>
+                <ul class="space-y-2 text-gray-700 text-sm">
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-orange-500"></i>
+                        Loan-to-Value (LTV): <strong>60%</strong> (properties below HK$7M)
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-orange-500"></i>
+                        Two mortgage types: Fixed-rate vs Floating-rate (P-based/HIBOR-based)
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-orange-500"></i>
+                        Amortization periods: 20, 25, 30 years
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-orange-500"></i>
+                        HK property history: 1997 peak → 2003 bottom → post-2009 rebound
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- HKMA Guidelines -->
+        <div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-md p-6 mb-6 border-2 border-orange-200">
+            <h3 class="font-bold text-orange-800 mb-4 flex items-center gap-2">
+                <i data-lucide="landmark" class="w-5 h-5"></i>
+                HKMA Mortgage Guidelines
+            </h3>
+            <div class="bg-white p-4 rounded-lg">
+                <div class="text-center mb-4">
+                    <p class="text-sm text-gray-600 mb-2">For owner-occupied properties below HK$7 million</p>
+                    <div class="flex justify-center items-center gap-4">
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-orange-600">60%</p>
+                            <p class="text-xs text-gray-600">Maximum LTV Ratio</p>
+                        </div>
+                        <i data-lucide="arrow-right" class="w-6 h-6 text-gray-300"></i>
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-red-600">40%</p>
+                            <p class="text-xs text-gray-600">Minimum Down Payment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 text-sm mt-4">
+                    <div class="bg-blue-50 p-3 rounded">
+                        <strong class="text-blue-800">Example:</strong><br>
+                        HK$3M property → HK$1.2M down, HK$1.8M loan
+                    </div>
+                    <div class="bg-green-50 p-3 rounded">
+                        <strong class="text-green-800">Agent Commission:</strong><br>
+                        1% of property price
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mortgage Types Comparison -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+            <h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <i data-lucide="scale" class="w-5 h-5 text-orange-500"></i>
+                Two Mortgage Types Comparison
+            </h3>
+            <div class="grid grid-cols-2 gap-6">
+                <div class="bg-blue-50 p-5 rounded-lg border-2 border-blue-200">
+                    <h4 class="font-bold text-blue-800 mb-3 flex items-center gap-2">
+                        <i data-lucide="lock" class="w-5 h-5"></i>
+                        Fixed-Rate Mortgage
+                    </h4>
+                    <ul class="text-sm text-blue-700 space-y-2">
+                        <li>• Interest rate <strong>FIXED</strong> for entire loan term</li>
+                        <li>• Monthly payment stays constant</li>
+                        <li>• Terms: 20, 25, 30 years</li>
+                        <li>• Best for: Risk-averse borrowers</li>
+                    </ul>
+                </div>
+                <div class="bg-purple-50 p-5 rounded-lg border-2 border-purple-200">
+                    <h4 class="font-bold text-purple-800 mb-3 flex items-center gap-2">
+                        <i data-lucide="trending-up" class="w-5 h-5"></i>
+                        Adjustable-Rate Mortgage (ARM)
+                    </h4>
+                    <ul class="text-sm text-purple-700 space-y-2">
+                        <li>• Interest rate <strong>VARIES</strong> during loan life</li>
+                        <li>• Common in HK: P-based, HIBOR-based</li>
+                        <li>• <strong>P-based formula:</strong> Prime rate - spread</li>
+                        <li>• Example: 5.25% - 3.1% = <strong>2.15%</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hong Kong Property Market History -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+            <h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <i data-lucide="history" class="w-5 h-5 text-orange-500"></i>
+                Hong Kong Property Market History
+            </h3>
+            <div class="space-y-3">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 text-center">
+                        <span class="bg-red-500 text-white px-2 py-1 rounded text-sm font-bold">1997</span>
+                    </div>
+                    <div class="flex-1 bg-red-50 p-3 rounded-lg">
+                        <p class="text-sm text-red-800"><strong>Market Peak</strong> → Many homeowners had <strong>negative equity</strong> (mortgage > property value)</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="w-16 text-center">
+                        <span class="bg-orange-500 text-white px-2 py-1 rounded text-sm font-bold">2003</span>
+                    </div>
+                    <div class="flex-1 bg-orange-50 p-3 rounded-lg">
+                        <p class="text-sm text-orange-800"><strong>SARS Bottom</strong> → Prices hit lowest then quickly rebounded</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="w-16 text-center">
+                        <span class="bg-green-500 text-white px-2 py-1 rounded text-sm font-bold">2009+</span>
+                    </div>
+                    <div class="flex-1 bg-green-50 p-3 rounded-lg">
+                        <p class="text-sm text-green-800">Long-term low interest rates fueled <strong>rapid rise</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Summary -->
+        <div class="bg-gradient-to-r from-gray-50 to-slate-50 rounded-xl p-6 border border-gray-200">
+            <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                <i data-lucide="file-text" class="w-5 h-5 text-gray-500"></i>
+                Quick Summary
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+                <strong>Key Data:</strong> HKMA mandates max 60% LTV for properties below HK$7M (40% down payment), property agent commission 1%,
+                P-based rate calculation (Prime rate - spread). HK property market history: 1997 peak → negative equity wave → 2003 SARS bottom →
+                post-2009 low-rate environment fueled rapid rise. Consider opportunity costs, stamp duty, fire insurance, maintenance before purchasing.
+            </p>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

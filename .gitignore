@@ -1,0 +1,24 @@
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Windsurf / large files
+resources/
+*.exe
+*.dll
+*.pak
+*.bin
+tools/
+locales/
+appx/
+Windsurf*

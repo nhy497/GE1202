@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ch2 Money Management - GE1202 Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <!-- Sidebar Navigation -->
+    <nav class="fixed left-0 top-0 h-full w-64 bg-white shadow-lg z-50 overflow-y-auto">
+        <div class="p-6">
+            <a href="index.html" class="flex items-center gap-2 text-blue-600 font-bold mb-8 hover:text-blue-800">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                Back to Overview
+            </a>
+            <h2 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4">Navigation</h2>
+            <ul class="space-y-2">
+                <li><a href="ch2_en.html" class="block px-4 py-2 bg-emerald-100 text-emerald-700 rounded-lg font-medium">Ch2 Money Management</a></li>
+                <li><a href="ch3.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Ch3 Saving</a></li>
+                <li><a href="ch4.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Ch4 Consumer Credits</a></li>
+                <li><a href="ch5.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Ch5 Purchasing Homes</a></li>
+                <li><a href="ch6.html" class="block px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg font-medium border-l-4 border-red-500">Ch6 Insurance</a></li>
+                <li><a href="ch7.html" class="block px-4 py-2 text-indigo-600 hover:bg-indigo-50 rounded-lg font-medium border-l-4 border-indigo-500">Ch7 Investment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="ml-64 p-8">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-2xl p-8 mb-8">
+            <div class="flex items-center gap-3 mb-2">
+                <i data-lucide="wallet" class="w-8 h-8"></i>
+                <span class="text-emerald-100 font-medium">Chapter 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Money Management</h1>
+            <p class="text-emerald-100 mt-2">Cash Flow Statements, Budgeting & Financial Ratios</p>
+        </div>
+
+        <!-- 1. Income Types -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <i data-lucide="dollar-sign" class="w-5 h-5 text-emerald-500"></i>
+                Sources of Income (Cash Inflows)
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <div class="bg-emerald-50 p-3 rounded-lg text-center">
+                    <i data-lucide="briefcase" class="w-5 h-5 text-emerald-600 mx-auto mb-1"></i>
+                    <p class="text-sm font-medium">Salary/Wages</p>
+                </div>
+                <div class="bg-blue-50 p-3 rounded-lg text-center">
+                    <i data-lucide="trending-up" class="w-5 h-5 text-blue-600 mx-auto mb-1"></i>
+                    <p class="text-sm font-medium">Commissions</p>
+                </div>
+                <div class="bg-purple-50 p-3 rounded-lg text-center">
+                    <i data-lucide="user" class="w-5 h-5 text-purple-600 mx-auto mb-1"></i>
+                    <p class="text-sm font-medium">Self-employment</p>
+                </div>
+                <div class="bg-amber-50 p-3 rounded-lg text-center">
+                    <i data-lucide="piggy-bank" class="w-5 h-5 text-amber-600 mx-auto mb-1"></i>
+                    <p class="text-sm font-medium">Interest</p>
+                </div>
+                <div class="bg-pink-50 p-3 rounded-lg text-center">
+                    <i data-lucide="pie-chart" class="w-5 h-5 text-pink-600 mx-auto mb-1"></i>
+                    <p class="text-sm font-medium">Dividends</p>
+                </div>
+                <div class="bg-indigo-50 p-3 rounded-lg text-center">
+                    <i data-lucide="gift" class="w-5 h-5 text-indigo-600 mx-auto mb-1"></i>
+                    <p class="text-sm font-medium">Gifts/Grants</p>
+                </div>
+            </div>
+            <div class="mt-4 bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-bold text-gray-700 mb-2">Key Distinctions:</h4>
+                <ul class="space-y-1 text-sm text-gray-600">
+                    <li><strong>Take-home pay / Disposable Income:</strong> Money left after tax and mandatory deductions</li>
+                    <li><strong>Discretionary Income:</strong> Money left after paying for housing, food, necessities (ranges from &lt;5% for under 25 to &gt;40% for elderly)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2. Cash Outflows -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <i data-lucide="credit-card" class="w-5 h-5 text-emerald-500"></i>
+                Cash Outflows: Fixed vs Variable Expenses
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-blue-50 p-5 rounded-lg border-l-4 border-blue-400">
+                    <h3 class="font-bold text-blue-800 mb-3">Fixed Expenses</h3>
+                    <p class="text-sm text-blue-700 mb-2">Payments that do NOT vary month to month</p>
+                    <ul class="space-y-1 text-sm text-gray-700">
+                        <li>• Rent / Mortgage payments</li>
+                        <li>• Installment loan payments</li>
+                        <li>• Internet service charges</li>
+                        <li>• Insurance premiums</li>
+                    </ul>
+                </div>
+                <div class="bg-orange-50 p-5 rounded-lg border-l-4 border-orange-400">
+                    <h3 class="font-bold text-orange-800 mb-3">Variable Expenses</h3>
+                    <p class="text-sm text-orange-700 mb-2">Flexible payments that CHANGE monthly</p>
+                    <ul class="space-y-1 text-sm text-gray-700">
+                        <li>• Food (groceries & dining out)</li>
+                        <li>• Clothing & Personal care</li>
+                        <li>• Utilities (electricity, water)</li>
+                        <li>• Recreation & Medical expenses</li>
+                        <li>• Gifts and donations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Cash Flow Statement Example -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <i data-lucide="file-text" class="w-5 h-5 text-emerald-500"></i>
+                Cash Flow Statement Example
+            </h2>
+            <div class="bg-gray-50 p-4 rounded-lg overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="bg-emerald-100">
+                            <th class="px-3 py-2 text-left text-emerald-800">Item</th>
+                            <th class="px-3 py-2 text-right text-emerald-800">Amount (HK$)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="bg-green-50">
+                            <td colspan="2" class="px-3 py-2 font-bold text-green-800">INCOME (Cash Inflows)</td>
+                        </tr>
+                        <tr><td class="px-3 py-2">Salary</td><td class="px-3 py-2 text-right">10,875</td></tr>
+                        <tr><td class="px-3 py-2">Interest earned on savings</td><td class="px-3 py-2 text-right">85</td></tr>
+                        <tr><td class="px-3 py-2">Earnings from investment</td><td class="px-3 py-2 text-right">155</td></tr>
+                        <tr class="bg-green-100 font-bold">
+                            <td class="px-3 py-2">Total Income</td>
+                            <td class="px-3 py-2 text-right">11,115</td>
+                        </tr>
+                        <tr class="bg-red-50">
+                            <td colspan="2" class="px-3 py-2 font-bold text-red-800">FIXED EXPENSES</td>
+                        </tr>
+                        <tr><td class="px-3 py-2">Rent</td><td class="px-3 py-2 text-right">2,875</td></tr>
+                        <tr><td class="px-3 py-2">Loan payment</td><td class="px-3 py-2 text-right">540</td></tr>
+                        <tr><td class="px-3 py-2">Life insurance</td><td class="px-3 py-2 text-right">80</td></tr>
+                        <tr class="bg-red-100">
+                            <td class="px-3 py-2">Total Fixed</td>
+                            <td class="px-3 py-2 text-right">3,495</td>
+                        </tr>
+                        <tr class="bg-orange-50">
+                            <td colspan="2" class="px-3 py-2 font-bold text-orange-800">VARIABLE EXPENSES</td>
+                        </tr>
+                        <tr><td class="px-3 py-2">Food at home</td><td class="px-3 py-2 text-right">650</td></tr>
+                        <tr><td class="px-3 py-2">Food away from home</td><td class="px-3 py-2 text-right">420</td></tr>
+                        <tr><td class="px-3 py-2">Clothing</td><td class="px-3 py-2 text-right">375</td></tr>
+                        <tr><td class="px-3 py-2">Personal care</td><td class="px-3 py-2 text-right">212.50</td></tr>
+                        <tr><td class="px-3 py-2">Recreation</td><td class="px-3 py-2 text-right">250</td></tr>
+                        <tr><td class="px-3 py-2">Electricity</td><td class="px-3 py-2 text-right">120</td></tr>
+                        <tr class="bg-orange-100">
+                            <td class="px-3 py-2">Total Variable</td>
+                            <td class="px-3 py-2 text-right">2,027.50</td>
+                        </tr>
+                        <tr class="bg-gray-800 text-white font-bold">
+                            <td class="px-3 py-2">TOTAL OUTFLOWS</td>
+                            <td class="px-3 py-2 text-right">5,522.50</td>
+                        </tr>
+                        <tr class="bg-emerald-500 text-white font-bold text-lg">
+                            <td class="px-3 py-2">CASH SURPLUS</td>
+                            <td class="px-3 py-2 text-right">5,592.50</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-4 grid grid-cols-2 gap-4 text-sm">
+                <div class="bg-green-50 p-3 rounded border-l-4 border-green-400">
+                    <strong class="text-green-800">Positive Cash Flow (Surplus):</strong><br>
+                    Income > Outflows → Source of savings, investment, or debt payment
+                </div>
+                <div class="bg-red-50 p-3 rounded border-l-4 border-red-400">
+                    <strong class="text-red-800">Negative Cash Flow (Deficit):</strong><br>
+                    Income < Outflows → Financed by savings withdrawal or borrowing
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Budgeting -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <i data-lucide="clipboard-list" class="w-5 h-5 text-emerald-500"></i>
+                Budgeting: 7 Steps to Set Up a Budget
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">1</span>
+                        <h4 class="font-bold text-blue-800">Set Financial Goals</h4>
+                    </div>
+                    <p class="text-sm text-blue-700">Foundation for financial direction. Plans for spending, saving, and investing.</p>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">2</span>
+                        <h4 class="font-bold text-green-800">Estimate Income</h4>
+                    </div>
+                    <p class="text-sm text-green-700">Include only money you are SURE to receive. Estimate on the LOW side to avoid overspending.</p>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold">3</span>
+                        <h4 class="font-bold text-purple-800">Budget Emergency Fund</h4>
+                    </div>
+                    <p class="text-sm text-purple-700">3-6 months of expenses. Planning for unexpected: illness, redundancy.</p>
+                </div>
+                <div class="bg-orange-50 p-4 rounded-lg">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold">4</span>
+                        <h4 class="font-bold text-orange-800">Budget Fixed Expenses</h4>
+                    </div>
+                    <p class="text-sm text-orange-700">Rent, loan payments, insurance - predictable monthly costs.</p>
+                </div>
+                <div class="bg-pink-50 p-4 rounded-lg">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="w-8 h-8 bg-pink-600 text-white rounded-full flex items-center justify-center font-bold">5</span>
+                        <h4 class="font-bold text-pink-800">Budget Variable Expenses</h4>
+                    </div>
+                    <p class="text-sm text-pink-700">Food, clothing, utilities, recreation - flexible spending.</p>
+                </div>
+                <div class="bg-indigo-50 p-4 rounded-lg">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">6-7</span>
+                        <h4 class="font-bold text-indigo-800">Record & Review</h4>
+                    </div>
+                    <p class="text-sm text-indigo-700">Track spending amounts and review patterns regularly. Use smartphone apps!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Financial Ratios -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <i data-lucide="calculator" class="w-5 h-5 text-emerald-500"></i>
+                Four Financial Ratios
+            </h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-emerald-50">
+                        <tr>
+                            <th class="px-3 py-2 text-left text-emerald-800">Ratio</th>
+                            <th class="px-3 py-2 text-left text-emerald-800">Formula</th>
+                            <th class="px-3 py-2 text-left text-emerald-800">Interpretation</th>
+                            <th class="px-3 py-2 text-left text-emerald-800">Target</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr class="bg-red-50">
+                            <td class="px-3 py-3 font-medium text-red-800">Debt Ratio</td>
+                            <td class="px-3 py-3 text-gray-700">Liabilities ÷ Net Worth</td>
+                            <td class="px-3 py-3 text-gray-700">Shows relationship between debt and net worth</td>
+                            <td class="px-3 py-3 text-red-700 font-bold">LOW is best</td>
+                        </tr>
+                        <tr class="bg-blue-50">
+                            <td class="px-3 py-3 font-medium text-blue-800">Current Ratio</td>
+                            <td class="px-3 py-3 text-gray-700">Liquid Assets ÷ Current Liabilities</td>
+                            <td class="px-3 py-3 text-gray-700">Cash available to pay bills</td>
+                            <td class="px-3 py-3 text-blue-700 font-bold">HIGH is desirable</td>
+                        </tr>
+                        <tr class="bg-green-50">
+                            <td class="px-3 py-3 font-medium text-green-800">Liquidity Ratio</td>
+                            <td class="px-3 py-3 text-gray-700">Liquid Assets ÷ Monthly Expenses</td>
+                            <td class="px-3 py-3 text-gray-700">Number of months expenses can be paid in emergency</td>
+                            <td class="px-3 py-3 text-green-700 font-bold">HIGH is desirable</td>
+                        </tr>
+                        <tr class="bg-purple-50">
+                            <td class="px-3 py-3 font-medium text-purple-800">Debt-Payment Ratio</td>
+                            <td class="px-3 py-3 text-gray-700">Monthly Credit Payments ÷ Disposable Income</td>
+                            <td class="px-3 py-3 text-gray-700">Portion of earnings for debt payment</td>
+                            <td class="px-3 py-3 text-purple-700 font-bold">Monitor carefully</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="bg-gradient-to-r from-gray-50 to-slate-50 rounded-xl p-6 border border-gray-200">
+            <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                <i data-lucide="star" class="w-5 h-5 text-emerald-500"></i>
+                Chapter Summary
+            </h3>
+            <ul class="space-y-2 text-gray-700 text-sm">
+                <li>• <strong>Financial ratios</strong> provide guidelines for measuring changes in financial situation</li>
+                <li>• <strong>Liquidity ratio</strong> = Liquid Assets ÷ Monthly Expenses (indicates months of emergency coverage)</li>
+                <li>• <strong>Budgeting</strong> ensures personal expenditure does not exceed income</li>
+                <li>• <strong>Discretionary income</strong> varies by age: <5% (under 25) to >40% (elderly)</li>
+                <li>• Use <strong>smartphone apps</strong> to track expenses (especially cash transactions)</li>
+            </ul>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

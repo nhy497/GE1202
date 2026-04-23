@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ch7 Investment - GE1202 Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .security-card { transition: all 0.3s; }
+        .security-card:hover { transform: scale(1.02); }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <!-- Sidebar Navigation -->
+    <nav class="fixed left-0 top-0 h-full w-64 bg-white shadow-lg z-50 overflow-y-auto">
+        <div class="p-6">
+            <a href="index.html" class="flex items-center gap-2 text-blue-600 font-bold mb-8 hover:text-blue-800">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                Back to Overview
+            </a>
+            <h2 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4">Navigation</h2>
+            <ul class="space-y-2">
+                <li><a href="ch2.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Ch2 Money Management</a></li>
+                <li><a href="ch3.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Ch3 Saving</a></li>
+                <li><a href="ch4.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Ch4 Consumer Credits</a></li>
+                <li><a href="ch5.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Ch5 Purchasing Homes</a></li>
+                <li><a href="ch6.html" class="block px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg font-medium border-l-4 border-red-500">Ch6 Insurance</a></li>
+                <li><a href="ch7.html" class="block px-4 py-2 bg-indigo-100 text-indigo-700 rounded-lg font-medium border-l-4 border-indigo-500">Ch7 Investment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="ml-64 p-8">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-2xl p-8 mb-8">
+            <div class="flex items-center gap-3 mb-2">
+                <i data-lucide="trending-up" class="w-8 h-8"></i>
+                <span class="bg-indigo-400 text-white px-3 py-1 rounded-full text-sm font-bold">FOCUS CHAPTER</span>
+            </div>
+            <h1 class="text-3xl font-bold">Chapter 7: Investment</h1>
+            <p class="text-indigo-100 mt-2">Stocks, Bonds, Margin Trading (50%/40%)</p>
+        </div>
+
+        <!-- Section 1: Investment vs Speculation -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                <i data-lucide="scale" class="w-6 h-6 text-indigo-500"></i>
+                Investment vs Speculation
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
+                    <h3 class="font-bold text-green-800 mb-3 flex items-center gap-2">
+                        <i data-lucide="trending-up" class="w-5 h-5"></i>
+                        Investment
+                    </h3>
+                    <ul class="space-y-2 text-sm text-green-700">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-4 h-4 mt-0.5 text-green-500"></i>
+                            <span>Long-term perspective</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-4 h-4 mt-0.5 text-green-500"></i>
+                            <span>Value stability and predictable return levels</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-4 h-4 mt-0.5 text-green-500"></i>
+                            <span>Process of purchasing securities</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 mb-3 flex items-center gap-2">
+                        <i data-lucide="zap" class="w-5 h-5"></i>
+                        Speculation
+                    </h3>
+                    <ul class="space-y-2 text-sm text-red-700">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="x" class="w-4 h-4 mt-0.5 text-red-500"></i>
+                            <span>Short-term buying/selling</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="x" class="w-4 h-4 mt-0.5 text-red-500"></i>
+                            <span>Future value and returns highly uncertain</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="x" class="w-4 h-4 mt-0.5 text-red-500"></i>
+                            <span>High risk, high return</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Investment Requirements -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                <i data-lucide="clipboard-list" class="w-5 h-5 text-indigo-500"></i>
+                Investment Requirements
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-blue-50 p-4 rounded-lg text-center">
+                    <i data-lucide="coins" class="w-8 h-8 text-blue-600 mx-auto mb-3"></i>
+                    <h3 class="font-bold text-blue-800 mb-2">Investment Capital</h3>
+                    <p class="text-xs text-blue-600">Accumulated funds beyond emergency savings</p>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg text-center">
+                    <i data-lucide="book-open" class="w-8 h-8 text-purple-600 mx-auto mb-3"></i>
+                    <h3 class="font-bold text-purple-800 mb-2">Knowledge</h3>
+                    <p class="text-xs text-purple-600">Understand security types, markets, trading strategies</p>
+                </div>
+                <div class="bg-orange-50 p-4 rounded-lg text-center">
+                    <i data-lucide="user" class="w-8 h-8 text-orange-600 mx-auto mb-3"></i>
+                    <h3 class="font-bold text-orange-800 mb-2">Self-Knowledge</h3>
+                    <p class="text-xs text-orange-600">Risk tolerance, investment objectives</p>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg text-center">
+                    <i data-lucide="award" class="w-8 h-8 text-green-600 mx-auto mb-3"></i>
+                    <h3 class="font-bold text-green-800 mb-2">Experience</h3>
+                    <p class="text-xs text-green-600">Paper trades (simulated trading)</p>
+                </div>
+            </div>
+            
+            <div class="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+                <p class="text-amber-800 text-sm flex items-center gap-2">
+                    <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                    <strong>Golden Rule:</strong> NEVER invest in something you don't understand!
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 3: Investment Capital Strategies -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                <i data-lucide="piggy-bank" class="w-5 h-5 text-indigo-500"></i>
+                Two Methods to Accumulate Investment Capital
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-5 rounded-lg border-2 border-blue-200">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                        <h3 class="font-bold text-blue-800">Lump Sum Investment</h3>
+                    </div>
+                    <p class="text-sm text-blue-700 mb-3">Pre-invest a sum of money and let it grow over time</p>
+                    <ul class="space-y-1 text-xs text-blue-600">
+                        <li>• Requires larger initial capital</li>
+                        <li>• Compound growth starts immediately</li>
+                        <li>• Suitable for those with existing savings</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gradient-to-br from-green-50 to-green-100 p-5 rounded-lg border-2 border-green-200">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                        <h3 class="font-bold text-green-800">Systematic Savings Plan</h3>
+                    </div>
+                    <p class="text-sm text-green-700 mb-3">Deposit a fixed amount regularly each year</p>
+                    <ul class="space-y-1 text-xs text-green-600">
+                        <li>• Lower barrier to entry, easy to start</li>
+                        <li>• Dollar-cost averaging effect</li>
+                        <li>• Builds saving habits</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-4 text-center">
+                <p class="text-sm text-gray-600">
+                    <i data-lucide="info" class="w-4 h-4 inline mr-1"></i>
+                    Higher expected return rate = less initial capital needed
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 4: Types of Securities -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                <i data-lucide="layers" class="w-5 h-5 text-indigo-500"></i>
+                Types of Securities Comparison
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Common Stock -->
+                <div class="security-card bg-gradient-to-br from-blue-50 to-indigo-50 p-5 rounded-lg border-2 border-blue-200">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i data-lucide="trending-up" class="w-6 h-6 text-blue-600"></i>
+                        <h3 class="font-bold text-blue-800">Common Stock</h3>
+                    </div>
+                    <p class="text-xs text-blue-600 mb-3 italic">Equity form - ownership interest</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li class="flex items-start gap-2">
+                            <span class="bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded text-xs">Return</span>
+                            <span class="text-xs">Dividends + Price appreciation</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-xs">Features</span>
+                            <span class="text-xs">High return potential, high risk</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded text-xs">Maturity</span>
+                            <span class="text-xs">No maturity date</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded text-xs">Rights</span>
+                            <span class="text-xs">Voting rights to elect management</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Bonds -->
+                <div class="security-card bg-gradient-to-br from-green-50 to-emerald-50 p-5 rounded-lg border-2 border-green-200">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i data-lucide="file-text" class="w-6 h-6 text-green-600"></i>
+                        <h3 class="font-bold text-green-800">Bonds</h3>
+                    </div>
+                    <p class="text-xs text-green-600 mb-3 italic">Liability - issuer's IOU</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li class="flex items-start gap-2">
+                            <span class="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-xs">Return</span>
+                            <span class="text-xs">Fixed interest income</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded text-xs">Features</span>
+                            <span class="text-xs">Stable returns, lower risk</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded text-xs">Maturity</span>
+                            <span class="text-xs">Fixed maturity date</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded text-xs">Relation</span>
+                            <span class="text-xs">Price moves opposite to interest rates</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Preferred & Convertibles -->
+                <div class="security-card bg-gradient-to-br from-purple-50 to-pink-50 p-5 rounded-lg border-2 border-purple-200">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i data-lucide="git-merge" class="w-6 h-6 text-purple-600"></i>
+                        <h3 class="font-bold text-purple-800">Preferred & Convertibles</h3>
+                    </div>
+                    <p class="text-xs text-purple-600 mb-3 italic">Hybrid securities - combine debt and equity</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li class="flex items-start gap-2">
+                            <span class="bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded text-xs">Preferred</span>
+                            <span class="text-xs">Fixed dividends, priority over common stock</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="bg-pink-100 text-pink-700 px-1.5 py-0.5 rounded text-xs">Convertible</span>
+                            <span class="text-xs">Can be converted to common stock</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded text-xs">Advantage</span>
+                            <span class="text-xs">Income + Price appreciation potential</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Risk vs Return Comparison -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                <i data-lucide="bar-chart-2" class="w-5 h-5 text-indigo-500"></i>
+                Risk vs Return Comparison
+            </h2>
+            
+            <div class="relative bg-gray-50 p-6 rounded-lg">
+                <div class="flex items-end justify-around h-48 mb-4">
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 bg-green-400 rounded-t" style="height: 60px;"></div>
+                        <p class="text-xs mt-2 text-center">Bonds</p>
+                        <p class="text-xs text-gray-500">Low risk, low return</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 bg-purple-400 rounded-t" style="height: 80px;"></div>
+                        <p class="text-xs mt-2 text-center">Preferred Stock</p>
+                        <p class="text-xs text-gray-500">Medium risk/return</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 bg-blue-400 rounded-t" style="height: 100px;"></div>
+                        <p class="text-xs mt-2 text-center">Common Stock</p>
+                        <p class="text-xs text-gray-500">High risk, high return</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 bg-red-400 rounded-t" style="height: 120px;"></div>
+                        <p class="text-xs mt-2 text-center">Speculation</p>
+                        <p class="text-xs text-gray-500">Very high risk/return</p>
+                    </div>
+                </div>
+                <div class="text-center text-sm text-gray-600">
+                    <span class="inline-block mr-4"><span class="inline-block w-3 h-3 bg-green-400 mr-1"></span>Conservative</span>
+                    <span class="inline-block mr-4"><span class="inline-block w-3 h-3 bg-purple-400 mr-1"></span>Balanced</span>
+                    <span class="inline-block mr-4"><span class="inline-block w-3 h-3 bg-blue-400 mr-1"></span>Aggressive</span>
+                    <span class="inline-block"><span class="inline-block w-3 h-3 bg-red-400 mr-1"></span>Speculative</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Points Summary -->
+        <div class="bg-gradient-to-r from-indigo-100 to-purple-100 rounded-xl p-6 border-2 border-indigo-300">
+            <h3 class="font-bold text-indigo-800 mb-4 flex items-center gap-2">
+                <i data-lucide="star" class="w-5 h-5"></i>
+                Chapter Summary (EXAM FOCUS!)
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <ul class="space-y-2 text-indigo-700 text-sm">
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                        Investment vs Speculation (time perspective, predictability)
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                        Four basic investment requirements
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                        Two strategies to accumulate investment capital
+                    </li>
+                </ul>
+                <ul class="space-y-2 text-indigo-700 text-sm">
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                        Comparison of three security types
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                        Inverse relationship: bond prices and interest rates
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                        Hybrid characteristics of preferred stock
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
