@@ -137,7 +137,13 @@ var quizDatabase = {
                 id: "ch3_calc_1",
                 type: "calculation",
                 question: "Calculate the future value of HK$10,000 invested at 6% p.a. compounded quarterly for 3 years.",
-                answer: 11940.52,
+                options: [
+                    "HK$11,500",
+                    "HK$11,940.52",
+                    "HK$12,200",
+                    "HK$11,800"
+                ],
+                correct: 1,
                 explanation: "Using compound interest formula: FV = PV × (1 + i)^n. Where i = r/n = 0.06/4 = 0.015, n = 4×3 = 12. FV = $10,000 × (1.015)^12 = $11,940.52.",
                 category: "compound_interest",
                 marks: 3,
@@ -194,7 +200,13 @@ var quizDatabase = {
                 id: "ch4_calc_1",
                 type: "calculation",
                 question: "Based on the loan repayment table (image shown in assignment), what is the monthly flat rate for a loan amount over HK$700,000?",
-                answer: 0.09,
+                options: [
+                    "0.15%",
+                    "0.12%",
+                    "0.09%",
+                    "0.06%"
+                ],
+                correct: 2,
                 explanation: "For HK$700,000 or above, the monthly flat rate is 0.09%. This can be derived from the table pattern where higher loan amounts have lower rates.",
                 category: "loan_analysis",
                 marks: 2
@@ -249,7 +261,13 @@ var quizDatabase = {
                 id: "ch5_calc_1",
                 type: "calculation",
                 question: "Ho earns HK$30,000/month with HK$900,000 savings. He wants to buy a HK$4.4M flat. What is the minimum down payment needed?",
-                answer: 1760000,
+                options: [
+                    "HK$1,500,000",
+                    "HK$1,760,000",
+                    "HK$2,000,000",
+                    "HK$2,200,000"
+                ],
+                correct: 1,
                 explanation: "Using LTV ratio: Down payment = Property Price × (1 - LTV). For HK$4.4M flat with 60% LTV: Down payment = $4.4M × 40% = $1,760,000.",
                 category: "mortgage",
                 marks: 3
@@ -547,7 +565,13 @@ var quizDatabase = {
                 id: "ch7_calc_1",
                 type: "calculation",
                 question: "You plan to buy 500 shares of 'CityU' at $20. Initial margin is 40% and maintenance margin is 30%. At what price will you receive a margin call?",
-                answer: 17.14,
+                options: [
+                    "$15.50",
+                    "$16.00",
+                    "$17.14",
+                    "$18.50"
+                ],
+                correct: 2,
                 explanation: "Using margin call formula: Margin Call Price = Loan / [(1 - Maintenance Margin) × Shares]. Loan = $10,000 × (1 - 40%) = $6,000. Margin Call Price = $6,000 / [(1 - 0.30) × 500] = $6,000 / 350 = $17.14.",
                 category: "margin_trading",
                 marks: 4,
