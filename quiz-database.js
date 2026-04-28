@@ -87,17 +87,17 @@ var quizDatabase = {
                     "Cannot determine without more information"
                 ],
                 correct: 1,
-                explanation: "Regular savings (4 years): FV = 2000 × [(1 + 0.04/12)^48 - 1] / (0.04/12) = HK$103,777. Savings plan with early withdrawal: After 4 years, FV = 2000 × 12 × 5 × (1 + 0.08/4)^(4×4) × (1 - 0.02) = approx HK$117,600 after 2% fee. Actually need detailed calculation: Monthly plan value before fee ≈ HK$120,000, after 2% fee = HK$117,600. The offer may be slightly better but risky if he needs exact timing.",
+                explanation: "Use Future Value formula: FV = PMT × [(1 + r)^n - 1] / r. Regular savings: FV = $103,777. Savings plan with 2% fee: FV ≈ $117,600. The plan is better but risky for early withdrawal.",
                 category: "compound_interest",
                 marks: 4,
-                formula: "FV = PMT × [(1 + r/n)^(nt) - 1] / (r/n)"
+                formula: "FV = PMT × [(1 + r)^n - 1] / r"
             },
             // Short Answer
             {
                 id: "ch2_sa_1",
                 type: "short_answer",
                 question: "Given the following data, prepare a Personal Balance Sheet for Ho: Cash in checking HK$4,500; Savings HK$1,890; Auto value HK$88,000; Video equipment HK$23,500; PC HK$12,000; Household possessions HK$34,000; Stocks HK$8,600; Education loan HK$21,600; Credit card HK$2,350",
-                sample_answer: "Assets: Liquid Assets = 4,500 + 1,890 = 6,390; Real Property = 88,000 + 34,000 = 122,000; Personal Property = 23,500 + 12,000 = 35,500; Investments = 8,600; Total Assets = 172,490. Liabilities: Current = 2,350; Long-term = 21,600; Total Liabilities = 23,950. Net Worth = 148,540",
+                sample_answer: "Assets: Liquid = $6,390; Real Property = $122,000; Personal Property = $35,500; Investments = $8,600; Total Assets = $172,490. Liabilities: Current = $2,350; Long-term = $21,600; Total = $23,950. Net Worth = $148,540.",
                 category: "financial_statements",
                 marks: 5
             }
@@ -138,10 +138,10 @@ var quizDatabase = {
                 type: "calculation",
                 question: "Calculate the future value of HK$10,000 invested at 6% p.a. compounded quarterly for 3 years.",
                 answer: 11940.52,
-                explanation: "FV = PV × (1 + r/n)^(nt) = 10,000 × (1 + 0.06/4)^(4×3) = 10,000 × (1.015)^12 = HK$11,940.52",
+                explanation: "Using compound interest formula: FV = PV × (1 + i)^n. Where i = r/n = 0.06/4 = 0.015, n = 4×3 = 12. FV = $10,000 × (1.015)^12 = $11,940.52.",
                 category: "compound_interest",
                 marks: 3,
-                formula: "FV = PV × (1 + r/n)^(nt)"
+                formula: "FV = PV × (1 + i)^n (i = r/n, n = total periods)"
             }
         ]
     },
@@ -203,7 +203,7 @@ var quizDatabase = {
                 id: "ch4_sa_1",
                 type: "short_answer",
                 question: "A medical insurance policy specifies a $3,500 per illness deductible, 90% co-insurance, internal limits of $500/day on room and $8,000 max surgical fee. John was hospitalized twice: 1st time - Room $500/day × 3 days, Surgical $1,000, Covered charges $800; 2nd time - Room $800/day × 4 days, Surgical $10,000, Covered charges $2,000. Calculate total compensation.",
-                sample_answer: "1st hospitalization: Room allowed $500×3=$1,500; Surgical allowed min($1,000,$8,000)=$1,000; Total covered = $1,500+$1,000+$800=$3,300; Less deductible $3,500 = $0; 90% co-insurance = $0. 2nd hospitalization: Room allowed $500×4=$2,000 (not $800×4); Surgical allowed $8,000 (not $10,000); Covered charges $2,000; Total = $12,000; Less deductible $3,500 = $8,500; 90% co-insurance = $7,650. Total compensation = $0 + $7,650 = $7,650",
+                sample_answer: "Insurance Claim Formula: Compensation = (Covered Expenses - Deductible) × Co-insurance %. 1st: ($3,300 - $3,500) × 90% = $0. 2nd: ($12,000 - $3,500) × 90% = $7,650. Total = $7,650. Note: Room limit $500/day, Surgical limit $8,000 applies.",
                 category: "insurance_claims",
                 marks: 6
             }
@@ -250,7 +250,7 @@ var quizDatabase = {
                 type: "calculation",
                 question: "Ho earns HK$30,000/month with HK$900,000 savings. He wants to buy a HK$4.4M flat. What is the minimum down payment needed?",
                 answer: 1760000,
-                explanation: "Minimum down payment = 40% of HK$4.4M = HK$1,760,000. Ho has HK$900,000 savings, so he needs additional HK$860,000. However, with LTV 60%, max loan = HK$2,640,000.",
+                explanation: "Using LTV ratio: Down payment = Property Price × (1 - LTV). For HK$4.4M flat with 60% LTV: Down payment = $4.4M × 40% = $1,760,000.",
                 category: "mortgage",
                 marks: 3
             },
@@ -440,6 +440,37 @@ var quizDatabase = {
                 explanation: "True. Disability insurance typically has elimination periods (30-90 days) before benefits begin. An emergency fund covers this gap and any uncovered expenses during disability.",
                 category: "emergency_fund",
                 marks: 3
+            },
+            // Additional MC questions matching assignment format
+            {
+                id: "ch6_mc_8",
+                type: "multiple_choice",
+                question: "Ho purchased a policy with an initial premium of HK$30,000 and may elect how much he desires to pay in premiums from now on. He has purchased a face value of HK$1,000,000 and can accumulate cash value. What type of life insurance has Ho purchased?",
+                options: [
+                    "Universal life",
+                    "Whole life",
+                    "Modified whole life",
+                    "Term life"
+                ],
+                correct: 0,
+                explanation: "Universal life insurance offers flexible premium payments after the initial payment, adjustable death benefits, and cash value accumulation. This matches the description of Ho's policy.",
+                category: "life_insurance",
+                marks: 2
+            },
+            {
+                id: "ch6_mc_9",
+                type: "multiple_choice",
+                question: "An insured usually chooses variable life insurance in order to:",
+                options: [
+                    "Provide more flexible coverage",
+                    "Emphasize the savings portion while still having death protection",
+                    "Lessen the savings feature of life insurance",
+                    "Substitute for fixed-dollar insurance protection"
+                ],
+                correct: 1,
+                explanation: "Variable life insurance combines death protection with an investment component. The cash value is invested in securities, potentially offering higher returns than traditional whole life policies.",
+                category: "life_insurance",
+                marks: 2
             }
         ]
     },
@@ -517,10 +548,10 @@ var quizDatabase = {
                 type: "calculation",
                 question: "You plan to buy 500 shares of 'CityU' at $20. Initial margin is 40% and maintenance margin is 30%. At what price will you receive a margin call?",
                 answer: 17.14,
-                explanation: "Total purchase = 500 × $20 = $10,000. Initial margin (40%) = $4,000. Loan = $6,000. For margin call: (Stock Value - Loan) / Stock Value = 30%. Let P = stock price: (500P - 6,000) / 500P = 0.30. 500P - 6,000 = 150P. 350P = 6,000. P = $17.14",
+                explanation: "Using margin call formula: Margin Call Price = Loan / [(1 - Maintenance Margin) × Shares]. Loan = $10,000 × (1 - 40%) = $6,000. Margin Call Price = $6,000 / [(1 - 0.30) × 500] = $6,000 / 350 = $17.14.",
                 category: "margin_trading",
                 marks: 4,
-                formula: "Margin % = (Market Value - Loan) / Market Value"
+                formula: "Margin Call Price = Loan / [(1 - MM) × Shares]"
             },
             {
                 id: "ch7_mc_2",
@@ -548,7 +579,7 @@ var quizDatabase = {
                     "50%"
                 ],
                 correct: 1,
-                explanation: "The typical maintenance margin requirement is 40% in Hong Kong. If equity falls below this percentage, a margin call is triggered.",
+                explanation: "The typical maintenance margin requirement is 30% in Hong Kong. If equity falls below this percentage, a margin call is triggered.",
                 category: "margin_trading",
                 marks: 2
             }
