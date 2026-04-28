@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GE1202 - 互動測驗 | Interactive Quiz</title>
+    <title>GE1202 - Interactive Quiz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="quiz-database.js"></script>
@@ -31,19 +31,19 @@
                 <div class="flex items-center gap-4">
                     <a href="index.html" class="flex items-center gap-2 text-white/80 hover:text-white transition">
                         <i data-lucide="arrow-left" class="w-5 h-5"></i>
-                        <span>返回主頁</span>
+                        <span>Back to Home</span>
                     </a>
                     <div class="h-6 w-px bg-white/30"></div>
                     <h1 class="text-2xl font-bold flex items-center gap-2">
                         <i data-lucide="help-circle" class="w-8 h-8"></i>
-                        GE1202 互動測驗
+                        GE1202 Interactive Quiz
                     </h1>
                 </div>
                 <div class="text-sm text-blue-100">
                     Final Exam Practice
                 </div>
             </div>
-            <p class="text-blue-100 mt-2 ml-4">模擬真實考試格式 | Part A: MC | Part B: T/F + 解釋 | Part C: 計算題</p>
+            <p class="text-blue-100 mt-2 ml-4">Simulates real exam format | Part A: MC | Part B: T/F + Explanation | Part C: Calculation</p>
         </div>
     </header>
 
@@ -53,7 +53,7 @@
         <div id="modeSelection" class="mb-8">
             <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
                 <i data-lucide="settings-2" class="w-6 h-6 text-blue-600"></i>
-                選擇測驗模式
+                Select Quiz Mode
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 <button onclick="startFullExam()" class="bg-white p-6 rounded-xl shadow-md border-2 border-blue-200 hover:border-blue-500 hover:shadow-lg transition text-left group">
@@ -61,13 +61,13 @@
                         <div class="bg-blue-100 p-2 rounded-lg group-hover:bg-blue-200 transition">
                             <i data-lucide="file-text" class="w-6 h-6 text-blue-600"></i>
                         </div>
-                        <h3 class="font-bold text-gray-800">完整考試模擬</h3>
+                        <h3 class="font-bold text-gray-800">Full Exam Simulation</h3>
                     </div>
-                    <p class="text-sm text-gray-600">30題混合測驗，模擬真實Final Exam格式</p>
+                    <p class="text-sm text-gray-600">30 mixed questions simulating real Final Exam format</p>
                     <div class="mt-3 flex gap-2 text-xs">
-                        <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">Part A: 選擇題</span>
+                        <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">Part A: MC</span>
                         <span class="bg-green-100 text-green-700 px-2 py-1 rounded">Part B: T/F</span>
-                        <span class="bg-amber-100 text-amber-700 px-2 py-1 rounded">Part C: 計算</span>
+                        <span class="bg-amber-100 text-amber-700 px-2 py-1 rounded">Part C: Calculation</span>
                     </div>
                 </button>
 
@@ -76,11 +76,11 @@
                         <div class="bg-emerald-100 p-2 rounded-lg group-hover:bg-emerald-200 transition">
                             <i data-lucide="book-open" class="w-6 h-6 text-emerald-600"></i>
                         </div>
-                        <h3 class="font-bold text-gray-800">按章節練習</h3>
+                        <h3 class="font-bold text-gray-800">Practice by Chapter</h3>
                     </div>
-                    <p class="text-sm text-gray-600">選擇特定章節進行針對性練習</p>
+                    <p class="text-sm text-gray-600">Select specific chapters for targeted practice</p>
                     <div class="mt-3 flex gap-2 text-xs">
-                        <span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded">Ch2-7 可選</span>
+                        <span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded">Ch2-7 Available</span>
                     </div>
                 </button>
 
@@ -89,72 +89,72 @@
                         <div class="bg-purple-100 p-2 rounded-lg group-hover:bg-purple-200 transition">
                             <i data-lucide="layers" class="w-6 h-6 text-purple-600"></i>
                         </div>
-                        <h3 class="font-bold text-gray-800">按題型練習</h3>
+                        <h3 class="font-bold text-gray-800">Practice by Type</h3>
                     </div>
-                    <p class="text-sm text-gray-600">專攻特定題型：MC、T/F、計算題</p>
+                    <p class="text-sm text-gray-600">Focus on specific question types: MC, T/F, Calculation</p>
                     <div class="mt-3 flex gap-2 text-xs">
-                        <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded">專項突破</span>
+                        <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded">Targeted Practice</span>
                     </div>
                 </button>
             </div>
 
             <!-- Chapter Selection (Hidden by default) -->
             <div id="chapterSelection" class="hidden bg-white rounded-xl shadow-md p-6 mb-6">
-                <h3 class="font-bold text-gray-800 mb-4">選擇章節</h3>
+                <h3 class="font-bold text-gray-800 mb-4">Select Chapter</h3>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
                     <button onclick="loadChapterQuiz('ch2')" class="chapter-badge bg-emerald-50 border border-emerald-200 p-4 rounded-lg hover:bg-emerald-100 text-left">
                         <div class="text-emerald-600 font-bold">Ch2</div>
                         <div class="text-sm text-gray-700">Money Management</div>
-                        <div class="text-xs text-gray-500 mt-1">現金流、財務比率</div>
+                        <div class="text-xs text-gray-500 mt-1">Cash Flow, Financial Ratios</div>
                     </button>
                     <button onclick="loadChapterQuiz('ch3')" class="chapter-badge bg-blue-50 border border-blue-200 p-4 rounded-lg hover:bg-blue-100 text-left">
                         <div class="text-blue-600 font-bold">Ch3</div>
                         <div class="text-sm text-gray-700">Saving</div>
-                        <div class="text-xs text-gray-500 mt-1">應急基金、定期存款</div>
+                        <div class="text-xs text-gray-500 mt-1">Emergency Fund, Time Deposits</div>
                     </button>
                     <button onclick="loadChapterQuiz('ch4')" class="chapter-badge bg-purple-50 border border-purple-200 p-4 rounded-lg hover:bg-purple-100 text-left">
                         <div class="text-purple-600 font-bold">Ch4</div>
                         <div class="text-sm text-gray-700">Consumer Credits</div>
-                        <div class="text-xs text-gray-500 mt-1">信貸、APR計算</div>
+                        <div class="text-xs text-gray-500 mt-1">Credit, APR Calculation</div>
                     </button>
                     <button onclick="loadChapterQuiz('ch5')" class="chapter-badge bg-orange-50 border border-orange-200 p-4 rounded-lg hover:bg-orange-100 text-left">
                         <div class="text-orange-600 font-bold">Ch5</div>
                         <div class="text-sm text-gray-700">Purchasing Homes</div>
-                        <div class="text-xs text-gray-500 mt-1">按揭、買vs租</div>
+                        <div class="text-xs text-gray-500 mt-1">Mortgage, Buy vs Rent</div>
                     </button>
                     <button onclick="loadChapterQuiz('ch6')" class="chapter-badge bg-red-50 border-2 border-red-300 p-4 rounded-lg hover:bg-red-100 text-left relative">
                         <div class="absolute top-0 right-0 bg-red-500 text-white text-xs px-2 py-0.5 rounded-bl">FOCUS</div>
                         <div class="text-red-600 font-bold">Ch6</div>
                         <div class="text-sm text-gray-700">Insurance</div>
-                        <div class="text-xs text-gray-500 mt-1">風險管理、人壽保險</div>
+                        <div class="text-xs text-gray-500 mt-1">Risk Management, Life Insurance</div>
                     </button>
                     <button onclick="loadChapterQuiz('ch7')" class="chapter-badge bg-indigo-50 border-2 border-indigo-300 p-4 rounded-lg hover:bg-indigo-100 text-left relative">
                         <div class="absolute top-0 right-0 bg-indigo-500 text-white text-xs px-2 py-0.5 rounded-bl">FOCUS</div>
                         <div class="text-indigo-600 font-bold">Ch7</div>
                         <div class="text-sm text-gray-700">Investment</div>
-                        <div class="text-xs text-gray-500 mt-1">股票、保證金交易</div>
+                        <div class="text-xs text-gray-500 mt-1">Stocks, Margin Trading</div>
                     </button>
                 </div>
             </div>
 
             <!-- Type Selection (Hidden by default) -->
             <div id="typeSelection" class="hidden bg-white rounded-xl shadow-md p-6 mb-6">
-                <h3 class="font-bold text-gray-800 mb-4">選擇題型</h3>
+                <h3 class="font-bold text-gray-800 mb-4">Select Question Type</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <button onclick="loadTypeQuiz('multiple_choice')" class="chapter-badge bg-blue-50 border border-blue-200 p-4 rounded-lg hover:bg-blue-100 text-left">
-                        <div class="text-blue-600 font-bold mb-1">選擇題 MC</div>
+                        <div class="text-blue-600 font-bold mb-1">Multiple Choice MC</div>
                         <div class="text-sm text-gray-700">Part A (30%)</div>
-                        <div class="text-xs text-gray-500 mt-1">2分/題，測試基礎概念</div>
+                        <div class="text-xs text-gray-500 mt-1">2 marks/question, tests basic concepts</div>
                     </button>
                     <button onclick="loadTypeQuiz('true_false')" class="chapter-badge bg-green-50 border border-green-200 p-4 rounded-lg hover:bg-green-100 text-left">
                         <div class="text-green-600 font-bold mb-1">True/False</div>
                         <div class="text-sm text-gray-700">Part B (30%)</div>
-                        <div class="text-xs text-gray-500 mt-1">3分/題，需簡短解釋</div>
+                        <div class="text-xs text-gray-500 mt-1">3 marks/question, requires brief explanation</div>
                     </button>
                     <button onclick="loadTypeQuiz('calculation')" class="chapter-badge bg-amber-50 border border-amber-200 p-4 rounded-lg hover:bg-amber-100 text-left">
-                        <div class="text-amber-600 font-bold mb-1">計算題</div>
+                        <div class="text-amber-600 font-bold mb-1">Calculation</div>
                         <div class="text-sm text-gray-700">Part C (40%)</div>
-                        <div class="text-xs text-gray-500 mt-1">複利、保證金、保險理賠</div>
+                        <div class="text-xs text-gray-500 mt-1">Compound Interest, Margin, Insurance Claims</div>
                     </button>
                 </div>
             </div>
@@ -165,15 +165,15 @@
             <!-- Progress Bar -->
             <div class="bg-white rounded-xl shadow-md p-4 mb-6">
                 <div class="flex justify-between items-center mb-2">
-                    <span class="text-sm font-medium text-gray-600">進度 Progress</span>
+                    <span class="text-sm font-medium text-gray-600">Progress</span>
                     <span class="text-sm font-bold text-blue-600" id="progressText">1 / 30</span>
                 </div>
                 <div class="w-full bg-gray-200 rounded-full h-2">
                     <div id="progressBar" class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 3%"></div>
                 </div>
                 <div class="flex justify-between items-center mt-2">
-                    <span class="text-xs text-gray-500">當前分數: <span id="currentScore" class="font-bold text-green-600">0</span></span>
-                    <span class="text-xs text-gray-500">剩餘時間: <span id="timer" class="font-bold">--:--</span></span>
+                    <span class="text-xs text-gray-500">Current Score: <span id="currentScore" class="font-bold text-green-600">0</span></span>
+                    <span class="text-xs text-gray-500">Time Remaining: <span id="timer" class="font-bold">--:--</span></span>
                 </div>
             </div>
 
@@ -197,15 +197,24 @@
                 </div>
 
                 <!-- True/False Buttons -->
-                <div id="tfContainer" class="hidden grid grid-cols-2 gap-4 mb-6">
-                    <button onclick="answerTF(true)" class="p-4 border-2 border-gray-200 rounded-xl hover:border-green-500 hover:bg-green-50 transition text-center">
-                        <div class="text-2xl font-bold text-green-600">TRUE</div>
-                        <div class="text-sm text-gray-500 mt-1">真確</div>
-                    </button>
-                    <button onclick="answerTF(false)" class="p-4 border-2 border-gray-200 rounded-xl hover:border-red-500 hover:bg-red-50 transition text-center">
-                        <div class="text-2xl font-bold text-red-600">FALSE</div>
-                        <div class="text-sm text-gray-500 mt-1">錯誤</div>
-                    </button>
+                <div id="tfContainer" class="hidden mb-6">
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <button onclick="answerTF(true)" class="p-4 border-2 border-gray-200 rounded-xl hover:border-green-500 hover:bg-green-50 transition text-center">
+                            <div class="text-2xl font-bold text-green-600">TRUE</div>
+                            <div class="text-sm text-gray-500 mt-1">Correct</div>
+                        </button>
+                        <button onclick="answerTF(false)" class="p-4 border-2 border-gray-200 rounded-xl hover:border-red-500 hover:bg-red-50 transition text-center">
+                            <div class="text-2xl font-bold text-red-600">FALSE</div>
+                            <div class="text-sm text-gray-500 mt-1">Incorrect</div>
+                        </button>
+                    </div>
+                    <div class="bg-amber-50 p-4 rounded-lg">
+                        <label class="block text-sm font-medium text-amber-800 mb-2">
+                            <i data-lucide="edit-3" class="w-4 h-4 inline mr-1"></i>
+                            Please provide your explanation (required):
+                        </label>
+                        <textarea id="tfExplanation" class="w-full p-3 border-2 border-amber-200 rounded-lg focus:border-amber-500 focus:outline-none resize-none" rows="3" placeholder="Explain why you chose this answer..."></textarea>
+                    </div>
                 </div>
 
                 <!-- Calculation Input -->
@@ -216,7 +225,7 @@
                     <div class="bg-blue-50 p-4 rounded-lg">
                         <p class="text-sm text-blue-800 font-medium mb-2">
                             <i data-lucide="calculator" class="w-4 h-4 inline mr-1"></i>
-                            公式 Formula
+                            Formula
                         </p>
                         <p id="calcFormula" class="text-sm text-blue-700 font-mono"></p>
                     </div>
@@ -226,13 +235,13 @@
                 <div id="explanationBox" class="hidden explanation-box bg-slate-50 border border-slate-200 rounded-xl p-6 mb-4">
                     <div class="flex items-center gap-2 mb-3">
                         <i data-lucide="lightbulb" class="w-5 h-5 text-amber-500"></i>
-                        <h4 class="font-bold text-gray-800">答案解析 Answer Explanation</h4>
+                        <h4 class="font-bold text-gray-800">Answer Explanation</h4>
                     </div>
                     <p id="explanationText" class="text-gray-700 leading-relaxed"></p>
                     <div class="mt-4 pt-4 border-t border-gray-200">
                         <p class="text-sm text-gray-500">
                             <i data-lucide="book-open" class="w-4 h-4 inline mr-1"></i>
-                            相關章節: <span id="explanationChapter" class="font-medium text-blue-600"></span>
+                            Related Chapter: <span id="explanationChapter" class="font-medium text-blue-600"></span>
                         </p>
                     </div>
                 </div>
@@ -241,15 +250,15 @@
                 <div class="flex gap-3">
                     <button id="checkAnswerBtn" onclick="checkAnswer()" class="flex-1 bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition flex items-center justify-center gap-2">
                         <i data-lucide="check-circle" class="w-5 h-5"></i>
-                        檢查答案 Check Answer
+                        Check Answer
                     </button>
                     <button id="nextQuestionBtn" onclick="nextQuestion()" class="hidden flex-1 bg-green-600 text-white py-3 rounded-xl font-semibold hover:bg-green-700 transition flex items-center justify-center gap-2">
                         <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                        下一題 Next Question
+                        Next Question
                     </button>
                     <button id="finishBtn" onclick="finishQuiz()" class="hidden flex-1 bg-amber-600 text-white py-3 rounded-xl font-semibold hover:bg-amber-700 transition flex items-center justify-center gap-2">
                         <i data-lucide="flag" class="w-5 h-5"></i>
-                        完成測驗 Finish
+                        Finish Quiz
                     </button>
                 </div>
             </div>
@@ -262,7 +271,7 @@
                     <div class="inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-4">
                         <i data-lucide="award" class="w-10 h-10 text-blue-600"></i>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-800">測驗完成！</h2>
+                    <h2 class="text-2xl font-bold text-gray-800">Quiz Completed!</h2>
                     <p class="text-gray-500">Quiz Completed</p>
                 </div>
 
@@ -272,10 +281,10 @@
                     <div class="text-gray-600" id="finalPercentage">0%</div>
                     <div class="mt-4 flex justify-center gap-4 text-sm">
                         <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full">
-                            <span id="correctCount">0</span> 正確
+                            <span id="correctCount">0</span> Correct
                         </span>
                         <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full">
-                            <span id="wrongCount">0</span> 錯誤
+                            <span id="wrongCount">0</span> Wrong
                         </span>
                     </div>
                 </div>
@@ -283,15 +292,15 @@
                 <!-- Performance Analysis -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 text-left">
                     <div class="bg-emerald-50 p-4 rounded-lg">
-                        <h4 class="font-bold text-emerald-800 mb-2">強項 Strengths</h4>
+                        <h4 class="font-bold text-emerald-800 mb-2">Strengths</h4>
                         <ul id="strengthsList" class="text-sm text-emerald-700 space-y-1"></ul>
                     </div>
                     <div class="bg-red-50 p-4 rounded-lg">
-                        <h4 class="font-bold text-red-800 mb-2">需加強 Weak Areas</h4>
+                        <h4 class="font-bold text-red-800 mb-2">Weak Areas</h4>
                         <ul id="weaknessesList" class="text-sm text-red-700 space-y-1"></ul>
                     </div>
                     <div class="bg-amber-50 p-4 rounded-lg">
-                        <h4 class="font-bold text-amber-800 mb-2">建議 Suggestions</h4>
+                        <h4 class="font-bold text-amber-800 mb-2">Suggestions</h4>
                         <ul id="suggestionsList" class="text-sm text-amber-700 space-y-1"></ul>
                     </div>
                 </div>
@@ -300,11 +309,11 @@
                 <div class="flex gap-3 justify-center">
                     <button onclick="location.reload()" class="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition flex items-center gap-2">
                         <i data-lucide="refresh-cw" class="w-5 h-5"></i>
-                        再測一次 Retry
+                        Retry
                     </button>
                     <a href="index.html" class="bg-gray-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-gray-700 transition flex items-center gap-2">
                         <i data-lucide="home" class="w-5 h-5"></i>
-                        返回主頁 Home
+                        Back to Home
                     </a>
                 </div>
             </div>
@@ -312,7 +321,7 @@
 
         <!-- Review Panel -->
         <div id="reviewPanel" class="hidden mt-8">
-            <h3 class="text-lg font-bold text-gray-800 mb-4">題目回顧 Question Review</h3>
+            <h3 class="text-lg font-bold text-gray-800 mb-4">Question Review</h3>
             <div id="reviewContainer" class="space-y-4">
                 <!-- Review items will be inserted here -->
             </div>
@@ -361,7 +370,7 @@
         function loadChapterQuiz(chapter) {
             currentQuiz = getQuestionsByChapter(chapter);
             if (currentQuiz.length === 0) {
-                alert('此章節暫無題目');
+                alert('No questions available for this chapter');
                 return;
             }
             currentQuiz = shuffleArray(currentQuiz);
@@ -475,11 +484,29 @@
             const question = currentQuiz[currentQuestionIndex];
             let isCorrect = false;
 
-            if (question.type === 'multiple_choice') {
-                isCorrect = selectedOption === question.correct;
-            } else if (question.type === 'true_false') {
+            // For T/F questions, require explanation
+            if (question.type === 'true_false') {
+                const explanation = document.getElementById('tfExplanation').value.trim();
+                if (!explanation) {
+                    alert('Please provide an explanation for your answer.');
+                    return;
+                }
+                if (selectedOption === null) {
+                    alert('Please select True or False.');
+                    return;
+                }
                 isCorrect = selectedOption === question.answer;
+            } else if (question.type === 'multiple_choice') {
+                if (selectedOption === null) {
+                    alert('Please select an option.');
+                    return;
+                }
+                isCorrect = selectedOption === question.correct;
             } else if (question.type === 'calculation') {
+                if (selectedOption === null) {
+                    alert('Please select an option.');
+                    return;
+                }
                 isCorrect = selectedOption === question.correct;
             }
 
