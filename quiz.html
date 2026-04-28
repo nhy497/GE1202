@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GE1202 - 互動測驗 | Interactive Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="quiz-database.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .fade-in { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .option-card { transition: all 0.2s ease; }
+        .option-card:hover { transform: translateX(5px); }
+        .correct-answer { background-color: #dcfce7; border-color: #22c55e; }
+        .wrong-answer { background-color: #fee2e2; border-color: #ef4444; }
+        .timer-bar { transition: width 1s linear; }
+        .chapter-badge { transition: all 0.2s ease; }
+        .chapter-badge:hover { transform: scale(1.05); }
+        .explanation-box { animation: slideDown 0.3s ease; }
+        @keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 500px; } }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="flex items-center gap-2 text-white/80 hover:text-white transition">
+                        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                        <span>返回主頁</span>
+                    </a>
+                    <div class="h-6 w-px bg-white/30"></div>
+                    <h1 class="text-2xl font-bold flex items-center gap-2">
+                        <i data-lucide="help-circle" class="w-8 h-8"></i>
+                        GE1202 互動測驗
+                    </h1>
+                </div>
+                <div class="text-sm text-blue-100">
+                    Final Exam Practice
+                </div>
+            </div>
+            <p class="text-blue-100 mt-2 ml-4">模擬真實考試格式 | Part A: MC | Part B: T/F + 解釋 | Part C: 計算題</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+        <!-- Quiz Mode Selection -->
+        <div id="modeSelection" class="mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <i data-lucide="settings-2" class="w-6 h-6 text-blue-600"></i>
+                選擇測驗模式
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <button onclick="startFullExam()" class="bg-white p-6 rounded-xl shadow-md border-2 border-blue-200 hover:border-blue-500 hover:shadow-lg transition text-left group">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="bg-blue-100 p-2 rounded-lg group-hover:bg-blue-200 transition">
+                            <i data-lucide="file-text" class="w-6 h-6 text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">完整考試模擬</h3>
+                    </div>
+                    <p class="text-sm text-gray-600">30題混合測驗，模擬真實Final Exam格式</p>
+                    <div class="mt-3 flex gap-2 text-xs">
+                        <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">Part A: 選擇題</span>
+                        <span class="bg-green-100 text-green-700 px-2 py-1 rounded">Part B: T/F</span>
+                        <span class="bg-amber-100 text-amber-700 px-2 py-1 rounded">Part C: 計算</span>
+                    </div>
+                </button>
+
+                <button onclick="startChapterQuiz()" class="bg-white p-6 rounded-xl shadow-md border-2 border-emerald-200 hover:border-emerald-500 hover:shadow-lg transition text-left group">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="bg-emerald-100 p-2 rounded-lg group-hover:bg-emerald-200 transition">
+                            <i data-lucide="book-open" class="w-6 h-6 text-emerald-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">按章節練習</h3>
+                    </div>
+                    <p class="text-sm text-gray-600">選擇特定章節進行針對性練習</p>
+                    <div class="mt-3 flex gap-2 text-xs">
+                        <span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded">Ch2-7 可選</span>
+                    </div>
+                </button>
+
+                <button onclick="startTypeQuiz()" class="bg-white p-6 rounded-xl shadow-md border-2 border-purple-200 hover:border-purple-500 hover:shadow-lg transition text-left group">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="bg-purple-100 p-2 rounded-lg group-hover:bg-purple-200 transition">
+                            <i data-lucide="layers" class="w-6 h-6 text-purple-600"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">按題型練習</h3>
+                    </div>
+                    <p class="text-sm text-gray-600">專攻特定題型：MC、T/F、計算題</p>
+                    <div class="mt-3 flex gap-2 text-xs">
+                        <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded">專項突破</span>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Chapter Selection (Hidden by default) -->
+            <div id="chapterSelection" class="hidden bg-white rounded-xl shadow-md p-6 mb-6">
+                <h3 class="font-bold text-gray-800 mb-4">選擇章節</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    <button onclick="loadChapterQuiz('ch2')" class="chapter-badge bg-emerald-50 border border-emerald-200 p-4 rounded-lg hover:bg-emerald-100 text-left">
+                        <div class="text-emerald-600 font-bold">Ch2</div>
+                        <div class="text-sm text-gray-700">Money Management</div>
+                        <div class="text-xs text-gray-500 mt-1">現金流、財務比率</div>
+                    </button>
+                    <button onclick="loadChapterQuiz('ch3')" class="chapter-badge bg-blue-50 border border-blue-200 p-4 rounded-lg hover:bg-blue-100 text-left">
+                        <div class="text-blue-600 font-bold">Ch3</div>
+                        <div class="text-sm text-gray-700">Saving</div>
+                        <div class="text-xs text-gray-500 mt-1">應急基金、定期存款</div>
+                    </button>
+                    <button onclick="loadChapterQuiz('ch4')" class="chapter-badge bg-purple-50 border border-purple-200 p-4 rounded-lg hover:bg-purple-100 text-left">
+                        <div class="text-purple-600 font-bold">Ch4</div>
+                        <div class="text-sm text-gray-700">Consumer Credits</div>
+                        <div class="text-xs text-gray-500 mt-1">信貸、APR計算</div>
+                    </button>
+                    <button onclick="loadChapterQuiz('ch5')" class="chapter-badge bg-orange-50 border border-orange-200 p-4 rounded-lg hover:bg-orange-100 text-left">
+                        <div class="text-orange-600 font-bold">Ch5</div>
+                        <div class="text-sm text-gray-700">Purchasing Homes</div>
+                        <div class="text-xs text-gray-500 mt-1">按揭、買vs租</div>
+                    </button>
+                    <button onclick="loadChapterQuiz('ch6')" class="chapter-badge bg-red-50 border-2 border-red-300 p-4 rounded-lg hover:bg-red-100 text-left relative">
+                        <div class="absolute top-0 right-0 bg-red-500 text-white text-xs px-2 py-0.5 rounded-bl">FOCUS</div>
+                        <div class="text-red-600 font-bold">Ch6</div>
+                        <div class="text-sm text-gray-700">Insurance</div>
+                        <div class="text-xs text-gray-500 mt-1">風險管理、人壽保險</div>
+                    </button>
+                    <button onclick="loadChapterQuiz('ch7')" class="chapter-badge bg-indigo-50 border-2 border-indigo-300 p-4 rounded-lg hover:bg-indigo-100 text-left relative">
+                        <div class="absolute top-0 right-0 bg-indigo-500 text-white text-xs px-2 py-0.5 rounded-bl">FOCUS</div>
+                        <div class="text-indigo-600 font-bold">Ch7</div>
+                        <div class="text-sm text-gray-700">Investment</div>
+                        <div class="text-xs text-gray-500 mt-1">股票、保證金交易</div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Type Selection (Hidden by default) -->
+            <div id="typeSelection" class="hidden bg-white rounded-xl shadow-md p-6 mb-6">
+                <h3 class="font-bold text-gray-800 mb-4">選擇題型</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <button onclick="loadTypeQuiz('multiple_choice')" class="chapter-badge bg-blue-50 border border-blue-200 p-4 rounded-lg hover:bg-blue-100 text-left">
+                        <div class="text-blue-600 font-bold mb-1">選擇題 MC</div>
+                        <div class="text-sm text-gray-700">Part A (30%)</div>
+                        <div class="text-xs text-gray-500 mt-1">2分/題，測試基礎概念</div>
+                    </button>
+                    <button onclick="loadTypeQuiz('true_false')" class="chapter-badge bg-green-50 border border-green-200 p-4 rounded-lg hover:bg-green-100 text-left">
+                        <div class="text-green-600 font-bold mb-1">True/False</div>
+                        <div class="text-sm text-gray-700">Part B (30%)</div>
+                        <div class="text-xs text-gray-500 mt-1">3分/題，需簡短解釋</div>
+                    </button>
+                    <button onclick="loadTypeQuiz('calculation')" class="chapter-badge bg-amber-50 border border-amber-200 p-4 rounded-lg hover:bg-amber-100 text-left">
+                        <div class="text-amber-600 font-bold mb-1">計算題</div>
+                        <div class="text-sm text-gray-700">Part C (40%)</div>
+                        <div class="text-xs text-gray-500 mt-1">複利、保證金、保險理賠</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Container -->
+        <div id="quizContainer" class="hidden">
+            <!-- Progress Bar -->
+            <div class="bg-white rounded-xl shadow-md p-4 mb-6">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm font-medium text-gray-600">進度 Progress</span>
+                    <span class="text-sm font-bold text-blue-600" id="progressText">1 / 30</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div id="progressBar" class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 3%"></div>
+                </div>
+                <div class="flex justify-between items-center mt-2">
+                    <span class="text-xs text-gray-500">當前分數: <span id="currentScore" class="font-bold text-green-600">0</span></span>
+                    <span class="text-xs text-gray-500">剩餘時間: <span id="timer" class="font-bold">--:--</span></span>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div id="questionCard" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 fade-in">
+                <!-- Question Header -->
+                <div class="flex items-center gap-3 mb-4">
+                    <span id="questionType" class="px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700">MC</span>
+                    <span id="questionChapter" class="px-3 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-700">Ch2</span>
+                    <span id="questionMarks" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700">2 marks</span>
+                </div>
+
+                <!-- Question Text -->
+                <h3 id="questionText" class="text-lg md:text-xl font-semibold text-gray-800 mb-6 leading-relaxed">
+                    Question text goes here...
+                </h3>
+
+                <!-- Options (for MC) -->
+                <div id="optionsContainer" class="space-y-3 mb-6">
+                    <!-- Options will be inserted here -->
+                </div>
+
+                <!-- True/False Buttons -->
+                <div id="tfContainer" class="hidden grid grid-cols-2 gap-4 mb-6">
+                    <button onclick="answerTF(true)" class="p-4 border-2 border-gray-200 rounded-xl hover:border-green-500 hover:bg-green-50 transition text-center">
+                        <div class="text-2xl font-bold text-green-600">TRUE</div>
+                        <div class="text-sm text-gray-500 mt-1">真確</div>
+                    </button>
+                    <button onclick="answerTF(false)" class="p-4 border-2 border-gray-200 rounded-xl hover:border-red-500 hover:bg-red-50 transition text-center">
+                        <div class="text-2xl font-bold text-red-600">FALSE</div>
+                        <div class="text-sm text-gray-500 mt-1">錯誤</div>
+                    </button>
+                </div>
+
+                <!-- Calculation Input -->
+                <div id="calcContainer" class="hidden mb-6">
+                    <div id="calcOptions" class="space-y-3 mb-4">
+                        <!-- Calculation options -->
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <p class="text-sm text-blue-800 font-medium mb-2">
+                            <i data-lucide="calculator" class="w-4 h-4 inline mr-1"></i>
+                            公式 Formula
+                        </p>
+                        <p id="calcFormula" class="text-sm text-blue-700 font-mono"></p>
+                    </div>
+                </div>
+
+                <!-- Explanation (shown after answering) -->
+                <div id="explanationBox" class="hidden explanation-box bg-slate-50 border border-slate-200 rounded-xl p-6 mb-4">
+                    <div class="flex items-center gap-2 mb-3">
+                        <i data-lucide="lightbulb" class="w-5 h-5 text-amber-500"></i>
+                        <h4 class="font-bold text-gray-800">答案解析 Answer Explanation</h4>
+                    </div>
+                    <p id="explanationText" class="text-gray-700 leading-relaxed"></p>
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <p class="text-sm text-gray-500">
+                            <i data-lucide="book-open" class="w-4 h-4 inline mr-1"></i>
+                            相關章節: <span id="explanationChapter" class="font-medium text-blue-600"></span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex gap-3">
+                    <button id="checkAnswerBtn" onclick="checkAnswer()" class="flex-1 bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition flex items-center justify-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5"></i>
+                        檢查答案 Check Answer
+                    </button>
+                    <button id="nextQuestionBtn" onclick="nextQuestion()" class="hidden flex-1 bg-green-600 text-white py-3 rounded-xl font-semibold hover:bg-green-700 transition flex items-center justify-center gap-2">
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        下一題 Next Question
+                    </button>
+                    <button id="finishBtn" onclick="finishQuiz()" class="hidden flex-1 bg-amber-600 text-white py-3 rounded-xl font-semibold hover:bg-amber-700 transition flex items-center justify-center gap-2">
+                        <i data-lucide="flag" class="w-5 h-5"></i>
+                        完成測驗 Finish
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="hidden">
+            <div class="bg-white rounded-2xl shadow-lg p-8 text-center">
+                <div class="mb-6">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-4">
+                        <i data-lucide="award" class="w-10 h-10 text-blue-600"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">測驗完成！</h2>
+                    <p class="text-gray-500">Quiz Completed</p>
+                </div>
+
+                <!-- Score Display -->
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 mb-6">
+                    <div class="text-4xl font-bold text-blue-600 mb-2" id="finalScore">0 / 100</div>
+                    <div class="text-gray-600" id="finalPercentage">0%</div>
+                    <div class="mt-4 flex justify-center gap-4 text-sm">
+                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full">
+                            <span id="correctCount">0</span> 正確
+                        </span>
+                        <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full">
+                            <span id="wrongCount">0</span> 錯誤
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Performance Analysis -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 text-left">
+                    <div class="bg-emerald-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-emerald-800 mb-2">強項 Strengths</h4>
+                        <ul id="strengthsList" class="text-sm text-emerald-700 space-y-1"></ul>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-red-800 mb-2">需加強 Weak Areas</h4>
+                        <ul id="weaknessesList" class="text-sm text-red-700 space-y-1"></ul>
+                    </div>
+                    <div class="bg-amber-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-amber-800 mb-2">建議 Suggestions</h4>
+                        <ul id="suggestionsList" class="text-sm text-amber-700 space-y-1"></ul>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex gap-3 justify-center">
+                    <button onclick="location.reload()" class="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition flex items-center gap-2">
+                        <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+                        再測一次 Retry
+                    </button>
+                    <a href="index.html" class="bg-gray-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-gray-700 transition flex items-center gap-2">
+                        <i data-lucide="home" class="w-5 h-5"></i>
+                        返回主頁 Home
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Review Panel -->
+        <div id="reviewPanel" class="hidden mt-8">
+            <h3 class="text-lg font-bold text-gray-800 mb-4">題目回顧 Question Review</h3>
+            <div id="reviewContainer" class="space-y-4">
+                <!-- Review items will be inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        // Quiz State
+        let currentQuiz = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let userAnswers = [];
+        let selectedOption = null;
+
+        // Mode Selection Functions
+        function startChapterQuiz() {
+            document.getElementById('chapterSelection').classList.remove('hidden');
+            document.getElementById('typeSelection').classList.add('hidden');
+        }
+
+        function startTypeQuiz() {
+            document.getElementById('typeSelection').classList.remove('hidden');
+            document.getElementById('chapterSelection').classList.add('hidden');
+        }
+
+        function startFullExam() {
+            // Create a comprehensive exam with 30 questions
+            currentQuiz = [];
+            
+            // Add 15 MC questions (Part A - 30%)
+            const mcQuestions = getQuestionsByType('multiple_choice');
+            currentQuiz = currentQuiz.concat(shuffleArray(mcQuestions).slice(0, 15));
+            
+            // Add 10 True/False (Part B - 30%)
+            const tfQuestions = getQuestionsByType('true_false');
+            currentQuiz = currentQuiz.concat(shuffleArray(tfQuestions).slice(0, 10));
+            
+            // Add 5 Calculation (Part C - 40%)
+            const calcQuestions = getQuestionsByType('calculation');
+            currentQuiz = currentQuiz.concat(shuffleArray(calcQuestions).slice(0, 5));
+            
+            startQuiz();
+        }
+
+        function loadChapterQuiz(chapter) {
+            currentQuiz = getQuestionsByChapter(chapter);
+            if (currentQuiz.length === 0) {
+                alert('此章節暫無題目');
+                return;
+            }
+            currentQuiz = shuffleArray(currentQuiz);
+            startQuiz();
+        }
+
+        function loadTypeQuiz(type) {
+            currentQuiz = getQuestionsByType(type);
+            currentQuiz = shuffleArray(currentQuiz);
+            startQuiz();
+        }
+
+        function startQuiz() {
+            document.getElementById('modeSelection').classList.add('hidden');
+            document.getElementById('quizContainer').classList.remove('hidden');
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = [];
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = currentQuiz[currentQuestionIndex];
+            selectedOption = null;
+
+            // Update progress
+            document.getElementById('progressText').textContent = `${currentQuestionIndex + 1} / ${currentQuiz.length}`;
+            document.getElementById('progressBar').style.width = `${((currentQuestionIndex + 1) / currentQuiz.length) * 100}%`;
+            document.getElementById('currentScore').textContent = score;
+
+            // Update question info
+            const typeLabels = {
+                'multiple_choice': 'MC 選擇題',
+                'true_false': 'T/F 判斷題',
+                'calculation': 'CALC 計算題',
+                'short_answer': 'SA 簡答題'
+            };
+            document.getElementById('questionType').textContent = typeLabels[question.type] || question.type;
+            document.getElementById('questionChapter').textContent = question.id.split('_')[0].toUpperCase();
+            document.getElementById('questionMarks').textContent = `${question.marks || 2} marks`;
+            document.getElementById('questionText').textContent = question.question;
+
+            // Hide all containers first
+            document.getElementById('optionsContainer').classList.add('hidden');
+            document.getElementById('tfContainer').classList.add('hidden');
+            document.getElementById('calcContainer').classList.add('hidden');
+            document.getElementById('explanationBox').classList.add('hidden');
+            document.getElementById('checkAnswerBtn').classList.remove('hidden');
+            document.getElementById('nextQuestionBtn').classList.add('hidden');
+            document.getElementById('finishBtn').classList.add('hidden');
+
+            // Show appropriate container
+            if (question.type === 'multiple_choice') {
+                document.getElementById('optionsContainer').classList.remove('hidden');
+                const optionsHtml = question.options.map((opt, idx) => `
+                    <button onclick="selectOption(${idx})" class="option-card w-full p-4 border-2 border-gray-200 rounded-xl text-left hover:border-blue-300 transition" data-idx="${idx}">
+                        <span class="font-bold text-blue-600 mr-2">${String.fromCharCode(65 + idx)}.</span>
+                        <span class="text-gray-700">${opt}</span>
+                    </button>
+                `).join('');
+                document.getElementById('optionsContainer').innerHTML = optionsHtml;
+            } else if (question.type === 'true_false') {
+                document.getElementById('tfContainer').classList.remove('hidden');
+            } else if (question.type === 'calculation') {
+                document.getElementById('calcContainer').classList.remove('hidden');
+                if (question.options) {
+                    const calcHtml = question.options.map((opt, idx) => `
+                        <button onclick="selectOption(${idx})" class="option-card w-full p-4 border-2 border-gray-200 rounded-xl text-left hover:border-amber-300 transition" data-idx="${idx}">
+                            <span class="font-bold text-amber-600 mr-2">${String.fromCharCode(65 + idx)}.</span>
+                            <span class="text-gray-700">${opt}</span>
+                        </button>
+                    `).join('');
+                    document.getElementById('calcOptions').innerHTML = calcHtml;
+                }
+                document.getElementById('calcFormula').textContent = question.formula || 'See explanation for calculation steps';
+            }
+
+            // Show finish button on last question
+            if (currentQuestionIndex === currentQuiz.length - 1) {
+                document.getElementById('nextQuestionBtn').classList.add('hidden');
+            }
+
+            lucide.createIcons();
+        }
+
+        function selectOption(idx) {
+            selectedOption = idx;
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('border-blue-500', 'bg-blue-50', 'border-amber-500', 'bg-amber-50');
+            });
+            const selectedCard = document.querySelector(`[data-idx="${idx}"]`);
+            if (selectedCard) {
+                selectedCard.classList.add(question.type === 'calculation' ? 'border-amber-500' : 'border-blue-500');
+                selectedCard.classList.add(question.type === 'calculation' ? 'bg-amber-50' : 'bg-blue-50');
+            }
+        }
+
+        function answerTF(answer) {
+            selectedOption = answer;
+            document.querySelectorAll('#tfContainer button').forEach(btn => {
+                btn.classList.remove('border-green-500', 'bg-green-50', 'border-red-500', 'bg-red-50');
+            });
+            if (answer) {
+                document.querySelector('#tfContainer button:first-child').classList.add('border-green-500', 'bg-green-50');
+            } else {
+                document.querySelector('#tfContainer button:last-child').classList.add('border-red-500', 'bg-red-50');
+            }
+        }
+
+        function checkAnswer() {
+            const question = currentQuiz[currentQuestionIndex];
+            let isCorrect = false;
+
+            if (question.type === 'multiple_choice') {
+                isCorrect = selectedOption === question.correct;
+            } else if (question.type === 'true_false') {
+                isCorrect = selectedOption === question.answer;
+            } else if (question.type === 'calculation') {
+                isCorrect = selectedOption === question.correct;
+            }
+
+            // Update score
+            if (isCorrect) {
+                score += question.marks || 2;
+            }
+
+            // Store answer
+            userAnswers.push({
+                question: question,
+                userAnswer: selectedOption,
+                isCorrect: isCorrect
+            });
+
+            // Show visual feedback
+            if (question.type === 'multiple_choice' || question.type === 'calculation') {
+                document.querySelectorAll('.option-card').forEach((card, idx) => {
+                    if (idx === question.correct) {
+                        card.classList.add('correct-answer');
+                    } else if (idx === selectedOption && !isCorrect) {
+                        card.classList.add('wrong-answer');
+                    }
+                });
+            }
+
+            // Show explanation
+            document.getElementById('explanationText').textContent = question.explanation;
+            document.getElementById('explanationChapter').textContent = question.category;
+            document.getElementById('explanationBox').classList.remove('hidden');
+
+            // Update buttons
+            document.getElementById('checkAnswerBtn').classList.add('hidden');
+            if (currentQuestionIndex < currentQuiz.length - 1) {
+                document.getElementById('nextQuestionBtn').classList.remove('hidden');
+            } else {
+                document.getElementById('finishBtn').classList.remove('hidden');
+            }
+
+            lucide.createIcons();
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            showQuestion();
+        }
+
+        function finishQuiz() {
+            document.getElementById('quizContainer').classList.add('hidden');
+            document.getElementById('resultsScreen').classList.remove('hidden');
+            document.getElementById('reviewPanel').classList.remove('hidden');
+
+            // Calculate statistics
+            const totalMarks = currentQuiz.reduce((sum, q) => sum + (q.marks || 2), 0);
+            const correctCount = userAnswers.filter(a => a.isCorrect).length;
+            const wrongCount = userAnswers.filter(a => !a.isCorrect).length;
+
+            // Display results
+            document.getElementById('finalScore').textContent = `${score} / ${totalMarks}`;
+            document.getElementById('finalPercentage').textContent = `${Math.round((score / totalMarks) * 100)}%`;
+            document.getElementById('correctCount').textContent = correctCount;
+            document.getElementById('wrongCount').textContent = wrongCount;
+
+            // Analyze performance by category
+            const categoryStats = {};
+            userAnswers.forEach(answer => {
+                const cat = answer.question.category;
+                if (!categoryStats[cat]) {
+                    categoryStats[cat] = { correct: 0, total: 0 };
+                }
+                categoryStats[cat].total++;
+                if (answer.isCorrect) categoryStats[cat].correct++;
+            });
+
+            // Generate strengths and weaknesses
+            const strengths = [];
+            const weaknesses = [];
+            Object.entries(categoryStats).forEach(([cat, stats]) => {
+                const rate = stats.correct / stats.total;
+                if (rate >= 0.7) strengths.push(`${cat} (${Math.round(rate * 100)}%)`);
+                if (rate < 0.5) weaknesses.push(`${cat} (${Math.round(rate * 100)}%)`);
+            });
+
+            document.getElementById('strengthsList').innerHTML = strengths.length ? 
+                strengths.map(s => `<li>✓ ${s}</li>`).join('') : '<li>繼續努力！</li>';
+            document.getElementById('weaknessesList').innerHTML = weaknesses.length ? 
+                weaknesses.map(w => `<li>✗ ${w}</li>`).join('') : '<li>沒有明顯弱項</li>';
+
+            // Suggestions
+            const suggestions = [];
+            if (weaknesses.some(w => w.includes('margin_trading'))) {
+                suggestions.push('複習 Ch7 保證金交易計算');
+            }
+            if (weaknesses.some(w => w.includes('insurance'))) {
+                suggestions.push('複習 Ch6 保險類型和理賠計算');
+            }
+            if (weaknesses.some(w => w.includes('compound_interest'))) {
+                suggestions.push('練習複利計算公式 FV = PV(1+r/n)^(nt)');
+            }
+            if (suggestions.length === 0) {
+                suggestions.push('整體表現良好，建議進行完整考試模擬');
+            }
+            document.getElementById('suggestionsList').innerHTML = suggestions.map(s => `<li>• ${s}</li>`).join('');
+
+            // Generate review panel
+            const reviewHtml = userAnswers.map((ans, idx) => `
+                <div class="bg-white rounded-xl shadow p-4 ${ans.isCorrect ? 'border-l-4 border-green-500' : 'border-l-4 border-red-500'}">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-bold text-gray-700">Q${idx + 1}. ${ans.question.id.split('_')[0].toUpperCase()}</span>
+                        <span class="text-xs px-2 py-1 rounded ${ans.isCorrect ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
+                            ${ans.isCorrect ? '✓ Correct' : '✗ Wrong'}
+                        </span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">${ans.question.question.substring(0, 100)}...</p>
+                    <p class="text-xs text-gray-500">${ans.question.explanation.substring(0, 150)}...</p>
+                </div>
+            `).join('');
+            document.getElementById('reviewContainer').innerHTML = reviewHtml;
+
+            lucide.createIcons();
+        }
+
+        // Utility Functions
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            
+            // Debug: Check if quizDatabase is loaded
+            console.log('=== DEBUG INFO ===');
+            console.log('QuizDatabase loaded:', typeof quizDatabase !== 'undefined');
+            console.log('QuizDatabase keys:', quizDatabase ? Object.keys(quizDatabase) : 'undefined');
+            console.log('getQuestionsByChapter function:', typeof getQuestionsByChapter);
+            console.log('getQuestionsByType function:', typeof getQuestionsByType);
+            
+            // Test getting questions
+            if (typeof getQuestionsByChapter === 'function') {
+                try {
+                    console.log('Ch2 questions:', getQuestionsByChapter('ch2').length);
+                    console.log('Ch6 questions:', getQuestionsByChapter('ch6').length);
+                    console.log('Ch7 questions:', getQuestionsByChapter('ch7').length);
+                    console.log('First Ch2 question:', getQuestionsByChapter('ch2')[0]);
+                } catch (e) {
+                    console.error('Error getting questions:', e);
+                }
+            } else {
+                console.error('getQuestionsByChapter is not a function!');
+            }
+        });
+    </script>
+</body>
+</html>
