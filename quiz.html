@@ -483,8 +483,11 @@
         function checkAnswer() {
             const question = currentQuiz[currentQuestionIndex];
             let isCorrect = false;
+            let earnedMarks = 0;
+            let explanationScore = 0;
+            let userExplanation = '';
 
-            // For T/F questions, require explanation
+            // For T/F questions, require explanation and score it
             if (question.type === 'true_false') {
                 const explanation = document.getElementById('tfExplanation').value.trim();
                 if (!explanation) {
@@ -496,30 +499,59 @@
                     return;
                 }
                 isCorrect = selectedOption === question.answer;
+                userExplanation = explanation;
+                
+                // Score breakdown: Answer (50%) + Explanation (50%)
+                const totalMarks = question.marks || 3;
+                const answerMarks = totalMarks * 0.5; // 1.5 marks for correct answer
+                const maxExplanationMarks = totalMarks * 0.5; // 1.5 marks for explanation
+                
+                if (isCorrect) {
+                    earnedMarks += answerMarks;
+                }
+                
+                // Score explanation based on length (min 20 chars for full marks)
+                const expLength = explanation.length;
+                if (expLength >= 50) {
+                    explanationScore = maxExplanationMarks;
+                    earnedMarks += explanationScore;
+                } else if (expLength >= 20) {
+                    explanationScore = maxExplanationMarks * 0.5;
+                    earnedMarks += explanationScore;
+                } else {
+                    explanationScore = 0;
+                }
             } else if (question.type === 'multiple_choice') {
                 if (selectedOption === null) {
                     alert('Please select an option.');
                     return;
                 }
                 isCorrect = selectedOption === question.correct;
+                if (isCorrect) {
+                    earnedMarks = question.marks || 2;
+                }
             } else if (question.type === 'calculation') {
                 if (selectedOption === null) {
                     alert('Please select an option.');
                     return;
                 }
                 isCorrect = selectedOption === question.correct;
+                if (isCorrect) {
+                    earnedMarks = question.marks || 3;
+                }
             }
 
             // Update score
-            if (isCorrect) {
-                score += question.marks || 2;
-            }
+            score += earnedMarks;
 
-            // Store answer
+            // Store answer with explanation details
             userAnswers.push({
                 question: question,
                 userAnswer: selectedOption,
-                isCorrect: isCorrect
+                isCorrect: isCorrect,
+                earnedMarks: earnedMarks,
+                userExplanation: userExplanation,
+                explanationScore: explanationScore
             });
 
             // Show visual feedback
@@ -533,8 +565,22 @@
                 });
             }
 
-            // Show explanation
-            document.getElementById('explanationText').textContent = question.explanation;
+            // Show explanation with score breakdown for T/F
+            let explanationText = question.explanation;
+            if (question.type === 'true_false') {
+                const totalMarks = question.marks || 3;
+                const answerFeedback = isCorrect ? `✓ Answer correct: +${totalMarks * 0.5} marks` : `✗ Answer wrong: 0 marks`;
+                let expFeedback = '';
+                if (explanationScore >= totalMarks * 0.5) {
+                    expFeedback = `✓ Explanation excellent (${userExplanation.length} chars): +${explanationScore} marks`;
+                } else if (explanationScore > 0) {
+                    expFeedback = `⚠ Explanation fair (${userExplanation.length} chars): +${explanationScore} marks (aim for 50+ chars for full marks)`;
+                } else {
+                    expFeedback = `✗ Explanation too short (${userExplanation.length} chars): 0 marks (need 20+ chars)`;
+                }
+                explanationText = `${answerFeedback}\n${expFeedback}\n\n${question.explanation}`;
+            }
+            document.getElementById('explanationText').textContent = explanationText;
             document.getElementById('explanationChapter').textContent = question.category;
             document.getElementById('explanationBox').classList.remove('hidden');
 
@@ -612,18 +658,34 @@
             document.getElementById('suggestionsList').innerHTML = suggestions.map(s => `<li>• ${s}</li>`).join('');
 
             // Generate review panel
-            const reviewHtml = userAnswers.map((ans, idx) => `
-                <div class="bg-white rounded-xl shadow p-4 ${ans.isCorrect ? 'border-l-4 border-green-500' : 'border-l-4 border-red-500'}">
+            const reviewHtml = userAnswers.map((ans, idx) => {
+                const totalMarks = ans.question.marks || 2;
+                let explanationDetail = '';
+                if (ans.question.type === 'true_false' && ans.userExplanation) {
+                    explanationDetail = `
+                        <div class="mt-2 p-2 bg-amber-50 rounded text-xs">
+                            <p class="font-semibold text-amber-800">Your explanation (${ans.userExplanation.length} chars):</p>
+                            <p class="text-amber-700 italic">"${ans.userExplanation.substring(0, 100)}${ans.userExplanation.length > 100 ? '...' : ''}"</p>
+                            <p class="text-amber-600 mt-1">Explanation score: ${ans.explanationScore}/${totalMarks * 0.5} marks</p>
+                        </div>
+                    `;
+                }
+                return `
+                <div class="bg-white rounded-xl shadow p-4 ${ans.isCorrect && ans.explanationScore >= (totalMarks * 0.5) ? 'border-l-4 border-green-500' : 'border-l-4 border-amber-500'}">
                     <div class="flex justify-between items-start mb-2">
                         <span class="font-bold text-gray-700">Q${idx + 1}. ${ans.question.id.split('_')[0].toUpperCase()}</span>
-                        <span class="text-xs px-2 py-1 rounded ${ans.isCorrect ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
-                            ${ans.isCorrect ? '✓ Correct' : '✗ Wrong'}
-                        </span>
+                        <div class="text-right">
+                            <span class="text-xs px-2 py-1 rounded ${ans.isCorrect ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
+                                ${ans.isCorrect ? '✓ Answer' : '✗ Answer'}
+                            </span>
+                            <span class="text-xs font-bold text-blue-600 ml-1">${ans.earnedMarks || 0}/${totalMarks} marks</span>
+                        </div>
                     </div>
                     <p class="text-sm text-gray-600 mb-2">${ans.question.question.substring(0, 100)}...</p>
-                    <p class="text-xs text-gray-500">${ans.question.explanation.substring(0, 150)}...</p>
+                    ${explanationDetail}
+                    <p class="text-xs text-gray-500 mt-2">${ans.question.explanation.substring(0, 150)}...</p>
                 </div>
-            `).join('');
+            `}).join('');
             document.getElementById('reviewContainer').innerHTML = reviewHtml;
 
             lucide.createIcons();
