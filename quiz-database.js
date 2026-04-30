@@ -606,6 +606,71 @@ var quizDatabase = {
                 explanation: "The typical maintenance margin requirement is 30% in Hong Kong. If equity falls below this percentage, a margin call is triggered.",
                 category: "margin_trading",
                 marks: 2
+            },
+            // Additional Ch7 questions for final exam coverage
+            {
+                id: "ch7_tf_6",
+                type: "true_false",
+                question: "Bond prices and interest rates move in opposite directions.",
+                answer: true,
+                explanation: "True. When interest rates rise, existing bonds with lower coupon rates become less attractive, so their prices fall. Conversely, when rates fall, existing bonds with higher coupons become more valuable.",
+                category: "bonds",
+                marks: 3
+            },
+            {
+                id: "ch7_tf_7",
+                type: "true_false",
+                question: "Diversification eliminates all types of investment risk.",
+                answer: false,
+                explanation: "False. Diversification reduces unsystematic (company-specific) risk but cannot eliminate systematic (market-wide) risk that affects all investments.",
+                category: "risk_management",
+                marks: 3
+            },
+            {
+                id: "ch7_mc_4",
+                type: "multiple_choice",
+                question: "Which of the following represents the highest risk investment?",
+                options: [
+                    "Government bonds",
+                    "Corporate bonds",
+                    "Blue-chip stocks",
+                    "Penny stocks"
+                ],
+                correct: 3,
+                explanation: "Penny stocks (small company stocks trading at low prices) represent the highest risk due to high volatility, low liquidity, and greater potential for company failure.",
+                category: "investment",
+                marks: 2
+            },
+            {
+                id: "ch7_mc_5",
+                type: "multiple_choice",
+                question: "What is the primary advantage of investing in a mutual fund?",
+                options: [
+                    "Guaranteed returns",
+                    "Professional management and diversification",
+                    "Tax exemption",
+                    "No fees or charges"
+                ],
+                correct: 1,
+                explanation: "Mutual funds provide professional management and instant diversification by pooling money from many investors to buy a variety of securities.",
+                category: "investment",
+                marks: 2
+            },
+            {
+                id: "ch7_calc_2",
+                type: "calculation",
+                question: "An investor buys a bond with face value HK$10,000, coupon rate 5%, purchased at HK$9,500. What is the current yield?",
+                options: [
+                    "4.75%",
+                    "5.00%",
+                    "5.26%",
+                    "5.50%"
+                ],
+                correct: 2,
+                explanation: "Current Yield = Annual Coupon Payment / Current Market Price = (10,000 × 5%) / 9,500 = 500 / 9,500 = 5.26%.",
+                category: "bonds",
+                marks: 3,
+                formula: "Current Yield = Annual Coupon / Market Price"
             }
         ]
     },
