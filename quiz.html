@@ -246,8 +246,21 @@
                     </div>
                 </div>
 
+                <!-- Hint Box (initially hidden) -->
+                <div id="hintBox" class="hidden bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i data-lucide="help-circle" class="w-5 h-5 text-yellow-600"></i>
+                        <h4 class="font-bold text-yellow-800">Hint</h4>
+                    </div>
+                    <p id="hintText" class="text-yellow-700 text-sm"></p>
+                </div>
+
                 <!-- Action Buttons -->
                 <div class="flex gap-3">
+                    <button id="hintBtn" onclick="showHint()" class="bg-yellow-100 text-yellow-700 py-3 px-4 rounded-xl font-semibold hover:bg-yellow-200 transition flex items-center gap-2">
+                        <i data-lucide="help-circle" class="w-5 h-5"></i>
+                        Hint
+                    </button>
                     <button id="checkAnswerBtn" onclick="checkAnswer()" class="flex-1 bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition flex items-center justify-center gap-2">
                         <i data-lucide="check-circle" class="w-5 h-5"></i>
                         Check Answer
@@ -418,6 +431,8 @@
             document.getElementById('tfContainer').classList.add('hidden');
             document.getElementById('calcContainer').classList.add('hidden');
             document.getElementById('explanationBox').classList.add('hidden');
+            document.getElementById('hintBox').classList.add('hidden');
+            document.getElementById('hintBtn').classList.remove('hidden');
             document.getElementById('checkAnswerBtn').classList.remove('hidden');
             document.getElementById('nextQuestionBtn').classList.add('hidden');
             document.getElementById('finishBtn').classList.add('hidden');
@@ -599,6 +614,76 @@
             currentQuestionIndex++;
             showQuestion();
         }
+
+        // Hint function - show helpful tips
+        function showHint() {
+            const question = currentQuiz[currentQuestionIndex];
+            const hintBox = document.getElementById('hintBox');
+            const hintText = document.getElementById('hintText');
+            const hintBtn = document.getElementById('hintBtn');
+            
+            let hint = '';
+            
+            if (question.type === 'multiple_choice') {
+                hint = `Think about: ${question.category}. Review the key concepts in ${question.id.split('_')[0].toUpperCase()}.`;
+            } else if (question.type === 'true_false') {
+                hint = `Consider the definitions and examples from ${question.id.split('_')[0].toUpperCase()}. Think about exceptions to the rule.`;
+            } else if (question.type === 'calculation') {
+                if (question.formula) {
+                    hint = `Formula: ${question.formula}. Break down the problem step by step.`;
+                } else {
+                    hint = `Identify the given values and what you need to find. Check your formula sheet.`;
+                }
+            }
+            
+            hintText.textContent = hint;
+            hintBox.classList.remove('hidden');
+            hintBtn.classList.add('hidden'); // Hide hint button after clicking
+        }
+
+        // Keyboard shortcuts support
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('quizContainer').classList.contains('hidden')) return;
+            
+            const question = currentQuiz[currentQuestionIndex];
+            
+            // Number keys 1-4 for options
+            if (e.key >= '1' && e.key <= '4') {
+                const idx = parseInt(e.key) - 1;
+                if (question.type === 'multiple_choice' || question.type === 'calculation') {
+                    const options = document.querySelectorAll('.option-card');
+                    if (options[idx]) {
+                        selectOption(idx);
+                    }
+                }
+            }
+            
+            // T for True, F for False
+            if (question.type === 'true_false') {
+                if (e.key === 't' || e.key === 'T') answerTF(true);
+                if (e.key === 'f' || e.key === 'F') answerTF(false);
+            }
+            
+            // Enter to check answer
+            if (e.key === 'Enter' && !document.getElementById('checkAnswerBtn').classList.contains('hidden')) {
+                e.preventDefault();
+                checkAnswer();
+            }
+            
+            // Right arrow or N for next question
+            if ((e.key === 'ArrowRight' || e.key === 'n' || e.key === 'N') && 
+                !document.getElementById('nextQuestionBtn').classList.contains('hidden')) {
+                e.preventDefault();
+                nextQuestion();
+            }
+            
+            // H for hint
+            if ((e.key === 'h' || e.key === 'H') && 
+                !document.getElementById('hintBtn').classList.contains('hidden')) {
+                e.preventDefault();
+                showHint();
+            }
+        });
 
         function finishQuiz() {
             document.getElementById('quizContainer').classList.add('hidden');
